@@ -34,7 +34,7 @@
      So we can use coersion with if statement:
 
      ``` if (a || a === 0) //if (a || true) = if a exists ```
-     ```test```
+     
 
 
 
