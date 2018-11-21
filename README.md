@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [The Full JavaScript & ES6 Tutorial - (including ES7, ES8 & React)](#the-full-javascript--es6-tutorial---including-es7-es8--react)
+- [Material Sections](#material-sections)
+- [Usefull development references](#usefull-development-references)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## The Full JavaScript & ES6 Tutorial - (including ES7, ES8 & React)
 ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the first update to the language since ES5 was standardized in 2009. 
 
@@ -9,7 +19,7 @@ ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the f
 
 - [ECMAScript 7](https://github.com/bitaemi/javascript-to-es8/tree/master/es7)
 
-- [ECMAScript 8](https://github.com/bitaemi/javascript-to-es8/es8)
+- [ECMAScript 8](https://github.com/bitaemi/javascript-to-es8/tree/master/es8)
 
 
 ## Usefull development references
@@ -23,6 +33,8 @@ See more references:
  - [try out writing Typescript code in your browser](http://www.typescriptlang.org/Playground)
  - [more on Traceur](https://github.com/google/traceur-compiler)
  - [writing ES6 code in Traceur in your browser](https://google.github.io/traceur-compiler/demo/repl.html#)
+ - [JavaScript the weird Parts](https://www.udemy.com/understand-javascript/learn/v4/content)
+ - [ES6 in depth](https://www.udemy.com/es6-in-depth/learn/v4/overview)
 
 Use my gists:
 

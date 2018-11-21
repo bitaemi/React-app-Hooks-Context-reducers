@@ -1,3 +1,34 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [ECMAScript 6  - this README is forked from: <sup>git.io/es6features</sup>](#ecmascript-6----this-readme-is-forked-from-supgitioes6featuressup)
+  - [Introduction](#introduction)
+  - [ECMAScript 6 Features](#ecmascript-6-features)
+    - [Arrows](#arrows)
+    - [Classes](#classes)
+    - [Enhanced Object Literals](#enhanced-object-literals)
+    - [Template Strings](#template-strings)
+    - [Destructuring](#destructuring)
+    - [Default + Rest + Spread](#default--rest--spread)
+    - [Let + Const](#let--const)
+    - [Iterators + For..Of](#iterators--forof)
+    - [Generators](#generators)
+    - [Unicode](#unicode)
+    - [Modules](#modules)
+    - [Module Loaders](#module-loaders)
+    - [Map + Set + WeakMap + WeakSet](#map--set--weakmap--weakset)
+    - [Proxies](#proxies)
+    - [Symbols](#symbols)
+    - [Subclassable Built-ins](#subclassable-built-ins)
+    - [Math + Number + String + Array + Object APIs](#math--number--string--array--object-apis)
+    - [Binary and Octal Literals](#binary-and-octal-literals)
+    - [Promises](#promises)
+    - [Reflect API](#reflect-api)
+    - [Tail Calls](#tail-calls)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # ECMAScript 6  - this README is forked from: <sup>[git.io/es6features](http://git.io/es6features)</sup>
  - changes were made
 

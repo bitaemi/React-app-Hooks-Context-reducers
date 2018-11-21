@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [The Full JavaScript & ES6 Tutorial - (including ES7 & React)](#the-full-javascript--es6-tutorial---including-es7--react)
+    - [Please use this resource for the following reasons!](#please-use-this-resource-for-the-following-reasons)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## The Full JavaScript & ES6 Tutorial - (including ES7 & React)
  
 #### Please use this resource for the following reasons!
