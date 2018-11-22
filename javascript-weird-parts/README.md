@@ -27,7 +27,7 @@
 
 ### 2. Syntax Parsers, Lexical Environments
 
-    - Syntax Parsers = a program that:
+    - Syntax Parser = a program that:
 
             - reads your code and tells if is valid grammer;
 
