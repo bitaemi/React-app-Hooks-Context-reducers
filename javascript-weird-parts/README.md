@@ -340,11 +340,17 @@ STATIC TYPING
 PRIMITIVE TYPE = type of data that represents a single value = NOT AN OBJECT
 
 PRIMITIVE TYPES <> OBJECT
+
     - undefined  = lack of existence //do not set vars to undefined
+    
     - NULL = lack of existence //You can use this
+    
     - number //floating point number
+    
     - string //sequence of caracters
+    
     - symbol //introduced in ES6
+    
 
 ### 15. Operators, Operators Precedence and Associativity
 
