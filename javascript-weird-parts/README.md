@@ -28,6 +28,15 @@
 - [24. Functions are Objects](#24-functions-are-objects)
 - [25. Function Statements and Function Expressions](#25-function-statements-and-function-expressions)
 - [26. By Value vs. By Reference](#26-by-value-vs-by-reference)
+- [27. Objects, Functions and 'this'](#27-objects-functions-and-this)
+- [28. Arrays = Collections of anything](#28-arrays--collections-of-anything)
+- [29. Arguments and 'spread'](#29-arguments-and-spread)
+- [30. Functions overloading](#30-functions-overloading)
+- [31. DANGER: Automatic Semicolon Insertion](#31-danger-automatic-semicolon-insertion)
+- [32. WhiteSpace](#32-whitespace)
+- [33. Immediately invoked Functions Expressions (IIFEs) and Safe Code](#33-immediately-invoked-functions-expressions-iifes-and-safe-code)
+- [34. Closures](#34-closures)
+- [35. Function Factories](#35-function-factories)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -40,9 +49,11 @@ Simple NOTES (in my own words) or a Cheet Sheet to remind us about what we learn
 
     - Syntax Parser = a program that:
 
-            - reads your code and tells if is valid grammer;
+            - reads your code, char by char, and tells if is valid grammer;
 
-            - interprets and returns something ( intermediates );
+            - interprets and returns something (intermediates);
+
+            - is part of the JS Engine
 
     - Lexical environment = where something sits physicaly in the code you write
 
@@ -612,26 +623,470 @@ STATEMENT = a unit that does some work
 ```
 ### 26. By Value vs. By Reference
 
+If I set b = a or pass to a function:
+
+```JavaScript
+    var a = 3;
+    var b;
+    //ALL PRIMITIVES TYPES ARE PASSED BY VALUE:
+    b = a; 
+    //  b is a copy of primitive a, located in a different place in memory, than is a located
+    // let's say a is located at 0x001 address, b is located at 0x002
+    a = 2;
+    console.log(b); //logs 3, independent of a's value
+```
+
+    If a is an object located at 0x001 and I set b = a (or pass to a function)  the new b variable points to the same location in memory that a does.
+
+    NO NEW object is created, NO COPY of the object is created.
+
+    The address of b is the same as a's: 0x001.
+
+    ALL OBJECTS INTERACT BY REFERENCE when setting them EQUAL TO EACH OTHER or passing to a function.
+
+```JavaScript
+    //ALL OBJECTS ARE PASSED BY REFERENCE:
+    var c = { greeting: 'hi'};
+    var d;
+
+    d = c; //d is not a copy of c, simply points to the same address
+    c.greeting = 'hello'; // MUTATE = CHANGE greeting's value
+    //IMMUTABLE =  cannot be changed
+    console.log(d);//logs Object { greeting: 'hello'}
+    //BY REFERENCE (as parameter):
+    function changeGreeting(obj) {
+        obj.greeting = 'Hola'; //mutate
+    }
+    changeGreeting(d);
+    console.log(c);// logs  Object { greeting: 'Holla'}
+    //EXCEPTION: 
+    c =  { greeting: 'howdy'}; // set up new memory space for the UNEXISTING  object (NEW ADDRESS)
+    console.log(c);// logs  Object { greeting: 'howdy'}
+    console.log(d);// logs  Object { greeting: 'Holla'}
+
+```
+### 27. Objects, Functions and 'this'
+
+Every time  an EXECUTION CONTEX is created, JS Engine gives us 'this' variable.
+
+'this' points to different things, depending on how the function is called.
+
+Inside functions declared in the GLOBAL SCOPE, 'this' will be the Global Object = Window.
+
+```JavaScript
+function a() {
+    console.log(this);
+}
+var b = function () {
+    this.newProperty = 'I am a value for the new property'; //newProperty gets attached to the Global Object
+}
+
+a(); //logs the Global Object
+
+```
+
+Inside functions invoked inside objects, 'this' will be the object wich holds the invoked function.
+
+Inside functions declared inside functions invoked inside objects, 'this' will be the Window Object.
+
+To know the value of 'this'  variable you have to look into it's EXECUTION CONTEXT but it doesn't always follow the SCOPE CHAIN as normal variables:
+
+```JavaScript
+
+var c = {
+     name: 'Value for first pair',
+     log: function() {
+         //this method is able to mutate the object were it lives
+         this.name = 'Updated c object'; //this is the c object
+         console.log(this); // this is the updated 'c' object
+
+        var setName = function (newName) {
+            this.name = newName; //COUNTER-INTUITIVE: name property gets attached to the Window Obj
+        }
+        setName('Updated again the c object');
+        console.log(this.name); // logs 'Updated c object'
+        }
+     };
+```
+
+That's why, for clarity and to make 'this' point to the same thing, use on top of your scope an assignment like : ```var self = this```, for safe usage of this inside that scope.
+
+```JavaScript
+ var c = {
+     name: 'Value for first pair',
+     log: function() {
+         //this method is able to mutate the object were it lives
+         var self = this; // self inside this function located inside the object is always the object
+         self.name = 'Updated c object'; 
+         console.log(this); // this is the updated 'c' object
+
+        var setName = function (newName) {
+            self.name = newName; //is clear we refere to the c object
+        }
+        setName('Updated again the c object');
+        console.log(self.name); // logs 'Updated again the c object'
+        }
+     };
+```
+
+### 28. Arrays = Collections of anything
+
+```JavaScript
+var arr1 = new Array(); //create empty array or:
+var arr2 = [];
+
+//each individual item in the array can have a different type:
+
+var array = [
+    1,
+    false,
+    {
+        name: 'Item 3 = Inner obj',
+        size: 3
+    },
+    function(name) {
+        var greeting = 'Item 4 of arr = inner function receives the ';
+        console.log(greeting + name);
+    },
+    "hello"
+]
+
+console.log(arr); //logs Array [ 1, false, Object, function, "hello"]
+arr[3](arr[2].name + 'as parameter'); //logs 'Item 4 = inner function receives Item 3 = Inner obj as parameter'
+```
+
+### 29. Arguments and 'spread'
+
+    ARGUMENTS = keyword in JS for all parameters you pass to a function (EXECUTION CONTEXT) 
+
+    When you execute a function, a new execution context is created, and the JavaScript engine sets up some things for us, like:
+    - a variable environment to hold our variables,
+
+    - an outer environment reference for the scope chain, 
+
+    - the special keyword, 'this', which will point to different things depending on where the function lives or how it's called,
+
+    - another special keyword, called arguments.
 
 
+    Arguments contains a list of all the values, of all the parameters that you pass to a function.
+
+    So arguments holds all those values that you pass to whatever function you're calling.
+
+```JavaScript
+
+    function func1(param1, param2, param3) {
+        console.log(param1);
+        console.log(param2);
+        console.log(param3);
+    }
+    
+    function func2(param1, param2, param3) {
+        if (arguments.length === 0) {
+            //in my vs of JS I don't have the lengt property
+            console.log('Missing parameters');
+        }
+        console.log(arguments); //arguments is a spectial keyword
+    }
+    
+    function func3(param1, param2, param3) {
+        console.log(arguments[0]); 
+    }
+
+    // JS allows call wihout any param
+    // param1, param2, param3 are undefined - JS allocates for each parameter
+    func1(); // logs undefined, undefined, undefined
+    func2(); //logs  'Missing parameters []'
+    func2("Ana","Teo"); //logs ["Ana","Teo"]
+    func3(); //logs undefined
+    func3("hwy"); //logs "hwy"
+```
+
+Though ARGUMENTS look and act like an array, they are not and do not have all the features of arrays;
+In newer versions of JS ARGUMENTS  will be deprecated and eventualy removed.
+
+### 30. Functions overloading
+
+```JavaScript
+    //first class function ??
+    function greet(firstname, lastname, language) {
+            
+        language = language || 'en';
+        
+        if (language === 'en') {
+            console.log('Hello ' + firstname + ' ' + lastname);   
+        }
+        
+        if (language === 'es') {
+            console.log('Hola ' + firstname + ' ' + lastname);   
+        }
+        
+    }
+
+    //overloaded functions ??:
+    function greetEnglish(firstname, lastname) {
+        greet(firstname, lastname, 'en');   
+    }
+
+    function greetSpanish(firstname, lastname) {
+        greet(firstname, lastname, 'es');   
+    }
+
+    greetEnglish('John', 'Doe');
+    greetSpanish('John', 'Doe');
+```
+
+### 31. DANGER: Automatic Semicolon Insertion  
+
+    !Always use the ';' inside your code, though the Syntax Parser injects automatically a ';' when it thinks it should be but is missing. 
 
 
+```JavaScript
+    //WRONG:
+    function getPerson() {
+        return //because here JS ENGINE sees you pressed the return intermediates the result adding a semicolon and func will exit at this line
+            {
+                firstname: 'Ana'
+            }
+    }
 
+    console.log(getPerson()); //logs undefined
+    //CORRECT
+    function getCorrect() {
+        return {
+            correct: 'dap'
+        }
+    }
+    console.log(getCorrect);//logs Object { correct: 'dap'}
+```
 
+### 32. WhiteSpace 
 
+WHITESPACE =  Invisible chars tahat create literal 'SPACE' in your written code
 
- 
+JS is very liberal about whitespace; 
+```JavaScript
+    var 
+        // first name of the person
+        firstname, 
+        
+        // last name of the person
+        lastname, 
+        
+        // the language
+        // can be 'en' or 'es'
+        language;
 
+    var person = {
+        // the first name
+        firstname: 'John',
+        
+        // the last name
+        // (always required)
+        lastname: 'Doe'
+    }
 
+console.log(person);
+```
+### 33. Immediately invoked Functions Expressions (IIFEs) and Safe Code
 
+```JavaScript
+    //using the function  expression
+        var greetFunc = function(name ){
+            console.log('Hello ' + name);
+        };
+        greetFunction('John');
+    //immediatly invoke the functions expression
+    //create a function object
+        var immediatlyInvokedFunction = function(name) {
+            return 'Hello ' + name;
+        }('John'); //we use () to invoke the function expression
+    console.log(immediatlyInvokedFunction); //expected result, immediatlyInvokedFunction is the returned valued of a function call
+    console.log(immediatlyInvokedFunction()); //logs string is not a function
 
+    3; //A VALID js EXPRESSION,not doing anything with it but NO ERROR!
+    //the following throws an error because is not an expression, is a statement:
+    function(name) {
+            return 'Hello ' + name;
+    }
+    //SOLUTION, to have an expression, put () around your statement:
+    (function(name) {
+        return 'Hello ' + name;
+    })
+    //Another immediatly invoked functions expression:
+    (function(name) {
+        return 'Hello ' + name;
+    })('Ana'); //IIFE
+    //same as:
+    (function(name) {
+        return 'Hello ' + name;
+    }('Ana')); //IIFE
+```
+    SAFE CODE:
+```JavaScript
+    var greet = 'Put dirrectly at global level';
+    (function(global, name) {
+        return 'Hello ' + name; 
+        // any variable inside the Exe Context of the anonymous function  is not touching the Global Env, is available only inside that execution context
+        var global.greet = 'Set at global level from the anonymous fc';
+        var greet = 'Inside immediatly invoked function'; //not seen outside, cannot put it accidentaly on the Global Env
+    }(window, 'Ana')); //at Global Exe Context I invoke the function
 
+    console.log(greet);// logs 'Set at global level from the anonymous fc'
+```
+### 34. Closures
 
+```JavaScript
+    function greet(whatToSay) {
+        return function(name) {
+            console.log(whatToSay + ' '  + name);
+        }
+    }
 
+    console.log(greet('Hi')('Ana'));
+    //or:
 
-     
+    var sayHi = greet('Hi');
+    sayHi('Ana');
+```
 
+    EXE STACK was:
 
+        greet() //returns a new function and after that is popped off the stack
 
+                //the returned fc still takes up space in memory after greet() is gone from the exe stack
 
+                //any function creaated inside has a refference to that function in memory
+                
+        Global  EXE Context 
 
+    OR, in the second approach:
+
+        greet()
+        sayHi() // sayHi still has a reference to the execution context of greet, after greet leaves the stack
+
+                //so that sayHi still be able to go down the scope chain and find the function returned
+                
+        Global exe context
+
+        The JavaScript engine will always make sure that whatever function I'm running, that it will have access to the variables that it's supposed to have access to.
+
+        That its scope is intact.
+
+```JavaScript
+    function buildFunctions() {
+        var arr = [];
+
+        for (var i = 0; i < 3; i++) {
+            arr.push(
+                function() {
+                    console.log(i); //this is not executed here, but at function's invokation
+                }
+            )
+        }
+        //here i = 3 and that's why JS Engine exists the for loop
+        //after the execution stack of .push method i is still in memory
+        // at this point var i is still in memory and is remembered with the value 3
+    return arr;
+    }
+
+var fs = buildFunctions();
+
+fs[0](); //invoke first item from array, wich is a function object and here, at the Global Exe Context, logs i
+fs[1]();
+fs[2]();
+```
+    When the script runs (first instance), the Exe Stack is:
+
+    buildFunctions() context //when this is popped off the stack, but we still have access to its variables:
+                    
+                    // i = 3, arr = [ f0, f1, f2], where f0 - f1 are the anonymous function that logs i
+
+                    //this variables are called FREE VARIABLES - are outside a fc, but we have access to
+
+    Global Exe context  // buildFunctions(), fs
+
+    The stack becomes (second instance):
+
+    console.log() exe context ??
+    fs[0]() context // this goes up in the scope chain, where the var i vas created and gets the value of i from there
+    Global Exe Context
+
+    The stack becomes (third instance):
+                    // fs[0]() context is removed from the stack
+    fs[1]() context // this goes up in the scope chain, where the var i vas created and gets the value of i from there
+    Global Exe Context
+
+    The stack becomes (fourth instance):
+                    // fs[1]() context is removed from the stack
+    fs[2]() context // this goes up in the scope chain, where the var i vas created and gets the value of i from there
+    Global Exe Context
+
+    ...
+
+    so the the output will be: 
+    
+    3
+    
+    3
+    
+    3
+    each time logs i, wich is 3, the value of the variable i
+
+    ```JavaScript
+    function buildFunctions() {
+        var arr = [];
+
+        for (var i = 0; i < 3; i++) {
+            let j = i; //in ES6 to preserve the value of i
+            arr.push(
+                function() {
+                    console.log(j); //this is not executed here, but at function's invokation
+                }
+            )
+        }
+        //here i = 3 and that's why JS Engine exists the for loop
+        //after the execution stack of .push method i is still in memory
+        // at this point var i is still in memory and is remembered with the value 3
+    return arr;
+    }
+
+var fs = buildFunctions();
+
+fs[0](); //invoke first item from array, wich is a function object and here, at the Global Exe Context, logs i
+fs[1]();
+fs[2]();
+```
+the above will output:
+
+0
+1
+2
+
+Or if I whant the same output I would use immediatly invoked functions:
+
+```JavaScript
+    function buildFunctions() {
+        var arr = [];
+
+        for (var i = 0; i < 3; i++) {
+
+            arr.push(
+                (function(j) {
+                    return function() {
+                    console.log(j); //this is immediatly invokated in the inner most function
+                    };
+                })(i)
+            )
+        }
+
+    return arr;
+    }
+
+var fs = buildFunctions();
+
+fs[0](); //the value of fist item from array is a log of 0
+fs[1]();
+fs[2]();
+```
+### 35. Function Factories

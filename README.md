@@ -23,10 +23,11 @@ ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the f
 
 
 ## Usefull development references
+- [Write Html fast using CSS syntax and the emmet features available in VS Code](https://docs.emmet.io/cheat-sheet/)
+
 - [Implementation of ES6 features in major JavaScript engines](http://kangax.github.io/es5-compat-table/es6/).
 
 - [ES6 standard - full specification of the ECMAScript 6 language](http://www.ecma-international.org/ecma-262/6.0/)
-
 
 See more references:
  - [Typescript](http://www.typescriptlang.org)
