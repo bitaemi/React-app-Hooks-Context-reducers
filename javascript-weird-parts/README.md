@@ -37,6 +37,23 @@
 - [33. Immediately invoked Functions Expressions (IIFEs) and Safe Code](#33-immediately-invoked-functions-expressions-iifes-and-safe-code)
 - [34. Closures](#34-closures)
 - [35. Function Factories](#35-function-factories)
+- [36. Closures and Callbacks](#36-closures-and-callbacks)
+- [37. call(), apply() and bind()](#37-call-apply-and-bind)
+- [38. FUNCTIONAL PROGRAMMING](#38-functional-programming)
+- [39. Classical vs.  Prototypal Inheritance](#39-classical-vs--prototypal-inheritance)
+- [40. Everything is an object or a primitive](#40-everything-is-an-object-or-a-primitive)
+- [41. REFLEXION AND EXTEND](#41-reflexion-and-extend)
+- [42. Building = Constructing Objects](#42-building--constructing-objects)
+- [44. Function Constructors and '.prototype'](#44-function-constructors-and-prototype)
+- [45. DANGER: 'new' and Functions](#45-danger-new-and-functions)
+- [46. Built-In Function Constructors](#46-built-in-function-constructors)
+- [47. Dangerous for..in Array  iteration](#47-dangerous-forin-array--iteration)
+- [48. Object.create and Pure Prototypal Inheritance](#48-objectcreate-and-pure-prototypal-inheritance)
+- [49. ES6 and Classes](#49-es6-and-classes)
+- [50. Odds and Ends - Initialization](#50-odds-and-ends---initialization)
+- [51. 'typeof', 'instanceof' and Figuring Out What Something is](#51-typeof-instanceof-and-figuring-out-what-something-is)
+- [52. "use strict" mode](#52-use-strict-mode)
+- [53. Examine Famous Frameworks and Libraries](#53-examine-famous-frameworks-and-libraries)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -351,11 +368,17 @@ STATIC TYPING
 PRIMITIVE TYPE = type of data that represents a single value = NOT AN OBJECT
 
 PRIMITIVE TYPES <> OBJECT
+
     - undefined  = lack of existence //do not set vars to undefined
+    
     - NULL = lack of existence //You can use this
+    
     - number //floating point number
+    
     - string //sequence of caracters
+    
     - symbol //introduced in ES6
+    
 
 ### 15. Operators, Operators Precedence and Associativity
 
@@ -808,7 +831,6 @@ In newer versions of JS ARGUMENTS  will be deprecated and eventualy removed.
 ### 30. Functions overloading
 
 ```JavaScript
-    //first class function ??
     function greet(firstname, lastname, language) {
             
         language = language || 'en';
@@ -823,7 +845,6 @@ In newer versions of JS ARGUMENTS  will be deprecated and eventualy removed.
         
     }
 
-    //overloaded functions ??:
     function greetEnglish(firstname, lastname) {
         greet(firstname, lastname, 'en');   
     }
@@ -956,7 +977,7 @@ console.log(person);
 
                 //the returned fc still takes up space in memory after greet() is gone from the exe stack
 
-                //any function creaated inside has a refference to that function in memory
+                //any function created inside has a reference to that function in memory
                 
         Global  EXE Context 
 
@@ -998,33 +1019,33 @@ fs[2]();
 ```
     When the script runs (first instance), the Exe Stack is:
 
-    buildFunctions() context //when this is popped off the stack, but we still have access to its variables:
+    buildFunctions() context //when this is popped off the stack, we still have access to its variables:
                     
                     // i = 3, arr = [ f0, f1, f2], where f0 - f1 are the anonymous function that logs i
 
-                    //this variables are called FREE VARIABLES - are outside a fc, but we have access to
+                    //these variables are called FREE VARIABLES - are outside a fc, but we have access to them
 
     Global Exe context  // buildFunctions(), fs
 
     The stack becomes (second instance):
 
     console.log() exe context ??
-    fs[0]() context // this goes up in the scope chain, where the var i vas created and gets the value of i from there
+    fs[0]() context // this goes up in the scope chain, where the var i was created and gets the value of i from there
     Global Exe Context
 
     The stack becomes (third instance):
                     // fs[0]() context is removed from the stack
-    fs[1]() context // this goes up in the scope chain, where the var i vas created and gets the value of i from there
+    fs[1]() context // this goes up in the scope chain, where the var i was created and gets the value of i from there
     Global Exe Context
 
     The stack becomes (fourth instance):
                     // fs[1]() context is removed from the stack
-    fs[2]() context // this goes up in the scope chain, where the var i vas created and gets the value of i from there
+    fs[2]() context // this goes up in the scope chain, where the var i was created and gets the value of i from there
     Global Exe Context
 
     ...
 
-    so the the output will be: 
+    so the output will be: 
     
     3
     
@@ -1090,3 +1111,612 @@ fs[1]();
 fs[2]();
 ```
 ### 35. Function Factories
+
+```JavaScript
+function makeGreeting(language) {
+ 
+    return function(firstname, lastname) {
+     
+        if (language === 'en') {
+            console.log('Hello ' + firstname + ' ' + lastname);   
+        }
+
+        if (language === 'es') {
+            console.log('Hola ' + firstname + ' ' + lastname);   
+        }
+        
+    }
+    
+}
+
+var greetEnglish = makeGreeting('en'); // a function object whose closure points to the  same language is being English
+var greetSpanish = makeGreeting('es');//a function object whose closure points to  a different exe context for the same function  where  the language is being English
+
+greetEnglish('John', 'Doe'); //points to the memory space of makegreeting('en') exe context as if that context wasn't removed from the stack
+greetSpanish('John', 'Doe');
+```
+
+Every time you call a function, it gets its own execution context, and any functions created inside of it will point to that execution context.
+
+### 36. Closures and Callbacks
+
+```JavaScript
+function sayHiLater() {
+    var greeting = 'Hi!';
+
+    setTimeout(function() {
+        console.log(greeting); //due to closure JS Engine is able to go up the scope chain to find greeting 
+    }, 3000);
+}
+
+sayHiLater();
+```
+JQuery uses functions expressions and first-class functions!:
+
+``` $("button").click(function() { });```
+
+A  CALLBACK FUNCTION = a function you give to another function to be run when the other function is finished. Above the anonymous function passed as parameter to the setTimeout is a callback function.
+
+### 37. call(), apply() and bind()
+
+    FUNCTION EXECUTION CONTEXT: Variable Environment + 'this' + Outer Environment
+
+    We control what 'this' ends up beeing when the Exe Context is created using  call(), apply() and bind() methods
+
+    FUNCTIONS = special  kind of objects - have properties: name (optional), CODE (Invocable()), access to these three special methods.
+
+    All functions in JavaScript also get access to some special functions, some special methods, on their own:  call(), apply() and bind() - all have to do with the 'this' keyword.
+
+
+```JavaScript
+var person = {
+    firstname: 'John',
+    lastname: 'Doe',
+    getFullName: function() {
+        
+        var fullname = this.firstname + ' ' + this.lastname;
+        return fullname;
+        
+    }
+}
+
+var logName = function(lang1, lang2) {
+
+    console.log('Logged: ' + this.getFullName()); // due to bind 'this' variable is the person
+    console.log('Arguments: ' + lang1 + ' ' + lang2);
+    console.log('-----------');
+    
+}
+//bind makes a copy of this logName and sets 'this' variable to be person:
+var logPersonName = logName.bind(person); 
+logPersonName('en');
+
+//invokes the function passing that 'this' variable points to:
+logName.call(person, 'en', 'es'); 
+//requires an array, not a list of parameters for the function - the only diff between apply and call:
+logName.apply(person, ['en', 'es']);
+
+(function(lang1, lang2) {
+
+    console.log('Logged: ' + this.getFullName());
+    console.log('Arguments: ' + lang1 + ' ' + lang2);
+    console.log('-----------');
+    
+}).apply(person, ['es', 'en']);
+
+// function borrowing
+var person2 = {
+    firstname: 'Jane',
+    lastname: 'Doe'
+}
+
+//So you can grab methods from other objects and use them (with apply or call) as long as you have similar property names so that the function works.
+console.log(person.getFullName.apply(person2));
+
+// FUNCTION CURRYING = create a copy of the function but with some preset parameters
+function multiply(a, b) {
+    return a*b;   
+}
+
+//create a new fc - a copy of multiply
+//first parameter for this copy of the function is PERMANENTLY set to 2
+var multipleByTwo = multiply.bind(this, 2); 
+console.log(multipleByTwo(4));
+
+var multipleByThree = multiply.bind(this, 3); //set a 3
+console.log(multipleByThree(4));
+```
+apply() and call() invoke the function and let you set up the 'this' keyword and then pass the other parameters, if you want, in two different ways.
+
+bind() creates a copy of the function, let's you set up what the 'this' keyword should mean and also let's you set default parameters, permanent preset parameters if you want.
+
+### 38. FUNCTIONAL PROGRAMMING
+
+    Write code in clean, reusable and tight way with FUNCTIONAL PROGRAMMING - give your functions functions as parameters
+
+```JavaScript
+    // I'm using first class functions so I can pass a function object:
+    //I'm going to take one array, do something to it and get a new array out of it.
+    function mapForEach(arr, fn) {
+        
+        var newArr = [];
+        for (var i=0; i < arr.length; i++) {
+            newArr.push(
+                //FUNCTIONAL PROGRAMMING - call a func and pass in that array item
+                //ABSTRACT the concept of iterating over the array
+                fn(arr[i])   
+            )
+        };
+        
+        return newArr;
+    }
+    //
+    var arr1 = [1,2,3];
+    console.log(arr1);
+
+
+    var arr2 = mapForEach(arr1, function(item) {
+    return item * 2; 
+    });
+    console.log(arr2);
+
+
+    var arr3 = mapForEach(arr1, function(item) {
+    return item > 2; 
+    });
+    console.log(arr3);
+
+
+    var checkPastLimit = function(limiter, item) {
+        return item > limiter;   
+    }
+    var arr4 = mapForEach(arr1, checkPastLimit.bind(this, 1));
+    console.log(arr4);
+
+
+    var checkPastLimitSimplified = function(limiter) {
+        return function(limiter, item) {
+            return item > limiter;   
+        }.bind(this, limiter); 
+    };
+
+    var arr5 = mapForEach(arr1, checkPastLimitSimplified(1));
+    console.log(arr5);
+```
+
+[UNDERSCORE.js library](https://underscorejs.org/underscore.js) - use it also to read and get inspiration from docs.
+[LOADASH library](http://loadash.com)
+
+```JavaScript
+// write code fast with underscore methods:
+var arr6 = _.map(arr1, function(item) { return item * 3 });
+console.log(arr6);
+
+var arr7 = _.filter([2,3,4,5,6,7], function(item) { return item % 2 === 0; });
+console.log(arr7);
+```
+### 39. Classical vs.  Prototypal Inheritance
+
+    INHERITANCE: one object gets access to the properties and methods of another object.
+
+    Classical inheritance = very verbose - when gets lange becomes hard to follow.
+
+    Prototypal Inheritance = simple, flexible, extensible, easy to understand.
+
+    If we have an object obj with the known prop1: obj.prop1, but we use obj.prop2, another property, because we haven't declared that propery o the object, JS Engine will go down on the PROTOTYPE CHAIN to look for that prop2. 
+
+    This has to do with where we have access to a property or method amongst a sequence of objects that are connected via this prototype property.
+
+    And it's hidden from me in the sense that I don't have to go obj.proto.proto.prop3. I can just say obj.prop3.
+
+    And the JavaScript engine does the work of searching the prototype chain, for those properties and methods.
+
+    If I have another object, obj2, the obj2.prop2 is going to return the exact same thing as obj1.prop2 because JS Engine goes down the PROTO CHAIN to find the unspecified property.
+
+```JavaScript
+var person = {
+    firstname: 'Default',
+    lastname: 'Default',
+    getFullName: function() {
+        return this.firstname + ' ' + this.lastname;  
+    }
+}
+
+var john = {
+    firstname: 'John',
+    lastname: 'Doe'
+}
+
+// don't do this EVER! for demo purposes only!!!
+john.__proto__ = person;
+console.log(john.getFullName());
+console.log(john.firstname);
+
+var jane = {
+    firstname: 'Jane'   
+}
+
+jane.__proto__ = person; //jane objects points as john obj at the same spot in memory, where person obj lives
+console.log(jane.getFullName()); //logs 'Jane Default'
+
+person.getFormalFullName = function() {
+    return this.lastname + ', ' + this.firstname;   
+}
+
+console.log(john.getFormalFullName());
+console.log(jane.getFormalFullName());
+```
+**!DO NOT directly access the prototype because it will dramatically slow down your applications: myObject.__proto__**
+
+### 40. Everything is an object or a primitive
+
+Everything has PROTOTYPE:
+
+```JavaScript
+
+var a = {};
+var b = function() {};
+var c = [];
+
+a.__proto__ //logs the base Object {}
+//access different built in methods a.__proto__. 
+b.__proto__ // logs: function Empty() {}
+//I have access to all methods of the function prototype b.__proto__. ...
+c.__proto__ //logs []
+
+```
+
+### 41. REFLEXION AND EXTEND
+
+Reflection: an object can look at itself, listing and changing it's properties and methods.
+
+Based on this ability we get a very usefull pattern - EXTEND
+
+```JavaScript
+    var person = {
+        firstname: 'Default',
+        lastname: 'Default',
+        getFullName: function() {
+            return this.firstname + ' ' + this.lastname;  
+        }
+    }
+
+    var john = {
+        firstname: 'John',
+        lastname: 'Doe'
+    }
+
+    // don't do this EVER! for demo purposes only!!!
+    john.__proto__ = person;
+
+    //loop over all the members of john obj
+    for (var prop in john) {
+        // I can look of john's properties = metadata and do things with it
+        if (john.hasOwnProperty(prop)) {
+            console.log(prop + ': ' + john[prop]);
+        }
+    }
+
+    var jane = {
+        address: '111 Main St.',
+        getFormalFullName: function() {
+            return this.lastname + ', ' + this.firstname;   
+        }
+    }
+
+    var jim = {
+        getFirstName: function() {
+            return firstname;   
+        }
+    }
+
+    //use the extend method from Underscore lib:
+    _.extend(john, jane, jim); //phisicaly place the properties into the john object = combines
+
+    console.log(john);
+```
+### 42. Building = Constructing Objects
+
+Syntax was added for marketing JavaScript, to attract Java developers, but JavaScript doesn't have classes as other languages have:
+
+```var myObject = new Person();```
+
+```JavaScript
+    function Person(firstname, lastname) {
+    
+        console.log(this); // logs Person {}
+        this.firstname = firstname;
+        this.lastname = lastname;
+        console.log('This function is invoked.');
+        
+    }
+
+    //'new' operator creates an empty object and then calls the Person() function
+    // the exe context creates 'this' variable that points to that empty object in memory:
+    var john = new Person('John', 'Doe'); //'new' keyword changes what happens with this variable from the Person function
+    console.log(john);
+
+    // Person function is a constructor because of new keyword
+    var jane = new Person('Jane', 'Doe');
+    console.log(jane);
+```
+    FUNCTION CONSTRUCTORS = A normal function that is used to construct objects.
+
+    When you put that 'new' keyword in front of a function call, the 'this' variable, which is created during the creation phase of the execution context, it points to a brand new empty object.
+
+    And that object is returned from the function automatically when the function finishes execution.
+
+### 44. Function Constructors and '.prototype'
+
+```.prototype``` property of a function is used only by the new operator and is not the ```__proto__``` property.
+
+```JavaScript
+function Person(firstname, lastname) {
+ 
+    console.log(this);
+    this.firstname = firstname;
+    this.lastname = lastname;
+    console.log('This function is invoked.');
+    
+}
+
+//set the .getFullName method on Person's prototype:
+Person.prototype.getFullName = function() {
+    return this.firstname + ' ' + this.lastname;   
+}
+
+//john and jane will point to Person.prototype as their prototype so, will have access of .getFullName method
+var john = new Person('John', 'Doe');
+console.log(john);
+
+var jane = new Person('Jane', 'Doe');
+console.log(jane);
+
+//can add to the prototype later other members/properties
+Person.prototype.getFormalFullName = function() {
+    return this.lastname + ', ' + this.firstname;   
+}
+
+console.log(john.getFormalFullName());
+```
+
+    Anything you add to them takes up memory space.
+
+    So, if I added `.getFullName`, for example, to every object, then that means every object gets its own copy of getFullName and takes up more memory space.
+
+    If I have 1,000 of these person objects, I'll have 1,000 getFullName methods, but if I add it to the `.prototype`, I'll only have one.
+
+    Even though I have 1,000 objects, I only have this method once. So, from a efficiency standpoint, it's better to put your methods on the prototype because they only need one copy to be used.
+
+### 45. DANGER: 'new' and Functions
+
+```var john = Person('John', 'Doe');``` if you forget to use the 'new' operator when invoking a funtion that is supposed to be a constructor, and doesn't return anything, 
+
+you'll get 'undefined', and later on Syntax Errors.
+
+Any function that we intend to be a function constructor should be called with capital letter.
+
+### 46. Built-In Function Constructors
+
+```JavaScript
+
+var a = new Number(3); //creates an Object, not a primitive, but adds '3' primitive value inside the object
+//we have access to those methods that live on the prototype of the Number object
+a.toFixed(2);// 3.00
+
+var b = new String("Ana"); 
+//String.prototype.indexOf() ...
+b.indexOf('A'); // logs 0
+
+//"John" is a primitive, but JS Engine boxed it inside of a String object wich has methods on the prototype
+"John".lenght; //4
+
+//all strings instantly will have access to the .isLengthGreaterThan method
+String.prototype.isLengthGreaterThan = function(limit) {
+    return this.length > limit;  
+}
+
+console.log("John".isLengthGreaterThan(3)); //primitive string "John" is automaticaly converted to a String object
+
+Number.prototype.isPositive = function() {
+    return this > 0;   
+}
+
+3.isPositive(); // SyntaxError - JS doesn't automaticaly convert numbers to Number object
+```
+    You shouldn't use these buil-in function constructors, unless you have to.
+
+**DANGEROUS Built-In Function Constructors**
+
+Instead of a lot of work with built-in JavaScript Date constructor use :
+
+[Moment.js library - usefull to deal with Date processing](http://momentjs.com).
+
+This helps out with some problems within that built-in constructor.
+
+### 47. Dangerous for..in Array  iteration
+
+Arrays in JS are different: 
+
+```JavaScript
+Array.prototype.myCustomFeature = 'attached to the prototype, not an item';
+
+var arr = ['item1name', 'item2name'];
+
+for (var prop in arr) {
+    console.log(prop + ': ' + arr[prop]);
+}
+```
+    Avoid iterating like above (use classic for loops instead) because you'll get all the properties of an array, not only the items:
+
+        0: item1name
+
+        1: item2name
+
+        myCustomFeature: 'attached to the prototype, not an item'
+
+### 48. Object.create and Pure Prototypal Inheritance
+
+```JavaScript
+
+    // POLYFILL = code that adds a feature wich the engine MAY lack
+    //
+    if (!Object.create) {
+    //add the .create method to the Global Object if JS Engine doesn't have it already
+    Object.create = function (o) {
+        if (arguments.length > 1) {
+        throw new Error('Object.create implementation'
+        + ' only accepts the first parameter.');
+        }
+        function F() {}
+        F.prototype = o; //set the prototype to the object I pass in
+        return new F();
+    };
+    }
+    //If you want to define a new object, you create a new object that becomes the basis for all others:
+    var person = {
+        firstname: 'Default',
+        lastname: 'Default',
+        greet: function() {
+            return 'Hi ' + this.firstname;   
+        }
+    }
+    /*And then you simply override, hide properties and methods on those created objects by setting the values of those properties and
+
+    methods on the new objects themselves:*/
+
+    var john = Object.create(person);
+    john.firstname = 'John';
+    john.lastname = 'Doe';
+    console.log(john);
+```
+    It's very straightforward, and it's very powerful because you can mutate, you can change the prototype along the way.
+    
+    It opens up a freer approach to constructing objects.
+
+    And you're not unnecessarily creating complex layers and interactions.
+
+### 49. ES6 and Classes
+
+```JavaScript
+    //this class is an Object, not a structure like in other languages
+    class Person {
+    construct(firstname, lastname) {
+        this.firstname  =  firstname;
+        this.lastname = lastname;
+    }
+
+    greet() {
+        return 'Hi ' + firstname;
+    }
+    }
+    var john = new Person('John', 'Doe');
+    //extends sets the Prototype(__proto__) :
+    class InformalPerson extends Person {
+        constructor(firstname, lastname) {
+            super(firstname, lastname);
+        }
+
+        greet() {
+            return 'Yo ' + firstname;
+        }
+    }
+ ```
+    SYNTACTIC SUGAR = a different way to type something that doesn't change how it works under the hood
+
+### 50. Odds and Ends - Initialization
+
+```JavaScript
+//Good approach for prototyping - before implementing your full software:
+var people = [
+    {
+        // the 'john' object
+        firstname: 'John',
+        lastname: 'Doe',
+        addresses: [
+            '111 Main St.',
+            '222 Third St.'
+        ]
+    },
+    {
+        // the 'jane' object
+        firstname: 'Jane',
+        lastname: 'Doe',
+        addresses: [
+            '333 Main St.',
+            '444 Fifth St.'
+        ],
+        greet: function() {
+            return 'Hello!';   
+        }
+    }
+]
+
+console.log(people
+```
+### 51. 'typeof', 'instanceof' and Figuring Out What Something is
+
+```JavaScript
+    var a = 3;
+    console.log(typeof a); //number
+
+    var b = "Hello";
+    console.log(typeof b);//string
+
+    var c = {};
+    console.log(typeof c);//object
+
+    var d = [];
+    console.log(typeof d); //logs 'object' - this is not usefull but weird!
+    console.log(Object.prototype.toString.call(d)); //logs [object Array] better!
+
+    function Person(name) {
+        this.name = name;
+    }
+
+    var e = new Person('Jane');
+    console.log(typeof e);//object
+    console.log(e instanceof Person); //true
+
+    console.log(typeof undefined); //logs undefined -  makes sense
+    console.log(typeof null); //logs object - a bug since, like, forever...
+
+    var z = function() { };
+    console.log(typeof z);//function
+```
+### 52. "use strict" mode
+
+STRICT MODE can help you prevent errors in some circumstances:
+
+```JavaScript
+function logNewPerson() {
+    "use strict"; //place it at the top of the file or of the top of the function
+    
+    var person2;
+    persom2 = {}; //mistype hard to track down
+    console.log(persom2);
+}
+
+var person;
+persom = {};
+console.log(persom);
+logNewPerson();
+```
+Read more about [strict mode on the MDN (Mozilla Developer Network)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)
+
+### 53. Examine Famous Frameworks and Libraries
+
+    Learn from others good code! There are so many JS libraries and frameworks - all open source code.
+
+    On github.com -> explore -> see all -> Js Framework and Libraries ...
+
+    Deep Dive jQuery source code:
+
+    jQuery doesn't add any other features to JS, but it makes easier to type things -let's you manipulate the DOM ( the tree like structure of the HTML page)
+    
+```JavaScript
+    var q = $("ul.people li");
+    console.log(q);
+```
+
+

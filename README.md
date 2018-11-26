@@ -34,8 +34,9 @@ See more references:
  - [try out writing Typescript code in your browser](http://www.typescriptlang.org/Playground)
  - [more on Traceur](https://github.com/google/traceur-compiler)
  - [writing ES6 code in Traceur in your browser](https://google.github.io/traceur-compiler/demo/repl.html#)
- - [JavaScript the weird Parts](https://www.udemy.com/understand-javascript/learn/v4/content)
- - [ES6 in depth](https://www.udemy.com/es6-in-depth/learn/v4/overview)
+ - [Read a list of features existing or coming in ES6](https://github.com/lukehoban/es6features)
+ - [JavaScript the weird Parts](https://www.udemy.com/understand-javascript/)
+ - [ES6 in depth](https://www.udemy.com/es6-in-depth/)
 
 Use my gists:
 
