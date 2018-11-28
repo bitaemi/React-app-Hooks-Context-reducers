@@ -54,6 +54,8 @@
 - [51. 'typeof', 'instanceof' and Figuring Out What Something is](#51-typeof-instanceof-and-figuring-out-what-something-is)
 - [52. "use strict" mode](#52-use-strict-mode)
 - [53. Examine Famous Frameworks and Libraries](#53-examine-famous-frameworks-and-libraries)
+- [54. Build a Framework Library](#54-build-a-framework-library)
+- [55. TypeScript, ES6, Transpiled Languages](#55-typescript-es6-transpiled-languages)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1706,17 +1708,40 @@ Read more about [strict mode on the MDN (Mozilla Developer Network)](https://dev
 
 ### 53. Examine Famous Frameworks and Libraries
 
-    Learn from others good code! There are so many JS libraries and frameworks - all open source code.
+    Learn from other's good code! There are so many JS libraries and frameworks - all open source code.
+
+    Analize the development (unminified versions) of libs source code.
 
     On github.com -> explore -> see all -> Js Framework and Libraries ...
-
-    Deep Dive jQuery source code:
-
-    jQuery doesn't add any other features to JS, but it makes easier to type things -let's you manipulate the DOM ( the tree like structure of the HTML page)
     
-```JavaScript
-    var q = $("ul.people li");
-    console.log(q);
-```
+- [UNDERSCORE.js library](https://underscorejs.org/underscore.js) - use it also to read and get inspiration from docs.
 
+- [LOADASH library](http://loadash.com)
 
+- [Deep Dive jQuery source code](../understanding-libraries/README.md#1-deep-dive-into-jquery-code)
+
+### 54. Build a Framework Library
+
+ - [2.0. Establish requirements](../understanding-libraries/README.md#20-establish-requirements)
+  - [2.1. Structuring Safe Code](../understanding-libraries/README.md#21-structuring-safe-code)
+  - [2.2. Setup the Object and Its Prototype](../understanding-libraries/README.md#22-setup-the-object-and-its-prototype)
+  - [2.2.1. What I want?](../understanding-libraries/README.md#221-what-i-want)
+  - [2.2.2. What I use? Wich pattern?](../understanding-libraries/README.md#222-what-i-use-wich-pattern)
+- [2.3. Properties and Chainable Methods](../understanding-libraries/README.md#23-properties-and-chainable-methods)
+- [2.4. Adding jQuery Support](../understanding-libraries/README.md#24-adding-jquery-support)
+- [2.5. Good Commenting](../understanding-libraries/README.md#25-good-commenting)
+- [2.6. Let's Use Our Framework](../understanding-libraries/README.md#26-lets-use-our-framework)
+
+### 55. TypeScript, ES6, Transpiled Languages
+
+Transpilers are tools that convert code from a language to another, for example ES6, Typescript, CoffeScript are converted to ES5 code that can be interpreted by JS Engine of the old browsers.
+
+Typescript language (provided by Microsoft) is strongly typed - provides types for your variables.
+
+- [Transpilers](https://gist.github.com/bitaemi/d0818d10862ac23a751ada7c5521657e)
+
+External References:
+ - [Typescript](http://www.typescriptlang.org)
+ - [try out writing Typescript code in your browser](http://www.typescriptlang.org/Playground)
+ - [more on Traceur](https://github.com/google/traceur-compiler)
+ - [writing ES6 code in Traceur in your browser](https://google.github.io/traceur-compiler/demo/repl.html#)
