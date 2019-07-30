@@ -1732,7 +1732,24 @@ Read more about [strict mode on the MDN (Mozilla Developer Network)](https://dev
 - [2.5. Good Commenting](../understanding-libraries/README.md#25-good-commenting)
 - [2.6. Let's Use Our Framework](../understanding-libraries/README.md#26-lets-use-our-framework)
 
-### 55. TypeScript, ES6, Transpiled Languages
+### 55.  Throttle
+    ```JavaScript 
+    function throttle(func, limit) {
+		var inThrottle = false;
+		return function() {
+			var args = arguments;
+			var context = this;
+			if (!inThrottle) {
+				func.apply(context, args);
+				inThrottle = true;
+				setTimeout(function() {
+					inThrottle = false;
+				}, limit);
+			}
+		};
+	}
+    ```
+### 56. TypeScript, ES6, Transpiled Languages
 
 Transpilers are tools that convert code from a language to another, for example ES6, Typescript, CoffeScript are converted to ES5 code that can be interpreted by JS Engine of the old browsers.
 
