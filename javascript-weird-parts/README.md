@@ -55,7 +55,8 @@
 - [52. "use strict" mode](#52-use-strict-mode)
 - [53. Examine Famous Frameworks and Libraries](#53-examine-famous-frameworks-and-libraries)
 - [54. Build a Framework Library](#54-build-a-framework-library)
-- [55. TypeScript, ES6, Transpiled Languages](#55-typescript-es6-transpiled-languages)
+- [55.  Throttle](#55--throttle)
+- [56. TypeScript, ES6, Transpiled Languages](#56-typescript-es6-transpiled-languages)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
