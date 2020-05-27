@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import Typography from "@material-ui/core/Typography";
@@ -7,17 +7,15 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 import useTodoState from "./hooks/useTodoState";
+// import useLocalStorageState from "./hooks/useLocalStorageState";
 
 function TodoApp() {
-  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
+  const initialTodos = [{id: 1, task: "Make security notes", completed: false}]
   const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(
     initialTodos
   );
 
-  useEffect(() => {
-    window.localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-
+  // const [mood, setMood] = useLocalStorageState("mood", "happy");
   return (
     <Paper
       style={{
@@ -42,6 +40,7 @@ function TodoApp() {
             toggleTodo={toggleTodo}
             editTodo={editTodo}
           />
+          {/* <button onClick={()=>setMood("angry")}>Click to get angry</button> */}
         </Grid>
       </Grid>
     </Paper>
