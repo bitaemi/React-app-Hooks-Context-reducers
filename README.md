@@ -109,9 +109,10 @@ ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the f
 
 ## React TODO app implemented with hooks
 
-Follow the link below to go to React implementation that includes :
+Follow the link below to go to the React implementation that includes :
  - TODO app implemented with HOOKS + CONTEXT
  - responsive login app implemented using JSS with Material UI libraries + CONTEXT - from [Colt's repo](https://github.com/Colt/todos-context-usereducer)
+
 [./hooks-todo-app/README.md#react-hooks](./hooks-todo-app/README.md#react-hooks)
 
 ## Usefull development external references

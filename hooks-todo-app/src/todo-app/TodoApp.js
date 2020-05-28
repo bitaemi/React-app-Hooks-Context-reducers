@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
-import useTodoState from "./hooks/useTodoState";
+import useTodoState from "../hooks/useTodoState";
 // import useLocalStorageState from "./hooks/useLocalStorageState";
 
 function TodoApp() {
@@ -26,11 +26,6 @@ function TodoApp() {
       }}
       elevation={0}
     >
-      <AppBar color='primary' position='static' style={{ height: "64px" }}>
-        <Toolbar>
-          <Typography color='inherit'>TODOS WITH HOOKS</Typography>
-        </Toolbar>
-      </AppBar>
       <Grid container justify='center' style={{ marginTop: "1rem" }}>
         <Grid item xs={11} md={8} lg={4}>
           <TodoForm addTodo={addTodo} />

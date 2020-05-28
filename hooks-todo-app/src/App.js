@@ -1,16 +1,23 @@
 import React, { Component } from "react";
-import TodoApp from "./TodoApp";
+import TodoApp from "./todo-app/TodoApp";
 import Navbar from "./Navbar";
-import Form from "./Form";
+import Form from "./login-form/Form";
+import PageContent from "./PageContent";
+import { ThemeProvider, ThemeContext } from "./contexts/ThemeContext";
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 class App extends Component {
     render() {
         return (
-            <>
-                <Navbar />
-                <TodoApp />
-                <Form />
-            </>
+            <ThemeProvider>
+                <LanguageProvider>
+                    <PageContent>
+                        <Navbar />
+                        <Form />
+                        <TodoApp />
+                    </PageContent>
+                </LanguageProvider>
+            </ThemeProvider>
         );
     }
 }

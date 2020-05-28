@@ -16,6 +16,7 @@
     - [Deployment](#deployment)
     - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
 - [React Hooks - are great!](#react-hooks---are-great)
+- [Context in React is about passing properties between a component and distant components (in the component tree)](#context-in-react-is-about-passing-properties-between-a-component-and-distant-components-in-the-component-tree)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -186,3 +187,45 @@ export default SWMovies;
 ```
 
 # Context in React is about passing properties between a component and distant components (in the component tree)
+
+```JavaScript
+// the component where we consume the data (PageContent component)
+import { ThemeContext } from "./contexts/ThemeContext";
+
+export default class PageContent extends Component {
+  // we set contextType to theme context and thus we are able to read the state directly from context
+  // if you whant to consume more then one context, this is not going to work
+  
+  static contextType = ThemeContext; // this tells the component to look for the ThemeContext somewhere above it
+  render() {
+    const { isDarkMode, toggleTheme } = this.context;
+    // ...
+  }
+
+  // In order to update the state we need to pass in the ThmeContext's Provider as value, the new state including the updated property corresponding to the event
+
+  // ..
+        <ThemeContext.Provider
+        value={{ ...this.state, toggleTheme: this.toggleTheme }}
+      ></ThemeContext.Provider>
+  // ..
+
+  // ...
+  // for those components that consume more than one contexts, we use consumer components
+  // create a high order component, wich takes a different component and some props,as argument,
+  // and returns that same component, with all it's original props, but also it injects in a property
+  // e.g laguageContext, coming from the consumer taht takes the value from consumer
+  export const withLanguageContext = Component => props => (
+    // Component is just a generatic name for whatever component we pass
+    // for those components that consume more than one contexts, we use consumer components
+    // these components take as child function components:
+    <LanguageContext.Consumer>
+      {value => <Component languageContext={value} {...props} />}
+    </LanguageContext.Consumer>
+  );
+
+  // in the component where we consume the data (Navbar) we use:
+  export default withLanguageContext(withStyles(styles)(Navbar));
+  // this takes the Navbar that was wrapped with the styles - this new version of the navbar si once again wrapped, this time with withLanguageContext
+  // so, it returns a new version of the Navbar, now containing languageContext, as a prop
+  ```
