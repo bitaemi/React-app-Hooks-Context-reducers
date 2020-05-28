@@ -100,14 +100,33 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
     justify-content: space-between;
 }
 ``` 
-// Use Google Fonts
+
+ NOTES:
+1) minimize state and use has() method of Set type state...has(lt) could be checked with state.includes(lt)
+2) parent component should be stateFULL, child components should be stateLESS, because each time the state changes, component reloads, all functions of that component are recreated
+
+![lucidChart](./lucidChart-diagram.JPG)
+
+* Use Google Fonts
+
 
 ```bash
-npm i --save @material/core
-npm i --save react-color
+# Usefull libraries:
+npm i --save reactstrap react react-dom
+npm i --save chroma-js
+npm i --save bootstrap jquery popper.js
+npm i --save react-router-dom
+npm i --save copy-to-clipboard
+npm i --save chroma-js
+npm i --save @material/core @material-ui/core @material-ui/icons
+npm i --save chroma-js
+npm i --save uuid # generate unique ids
+npm i axios # for ajax calls
+npm i --save react-router-dom # use it with <BrowserRouter> component and <Switch><Route path=''></Switch>
 ```
 
 ```JavaScript
+
 myArray.find(x=> x.id===id);
 // JSS withStyles:
 const styles = {
@@ -165,3 +184,5 @@ function SWMovies() {
 }
 export default SWMovies;
 ```
+
+# Context in React is about passing properties between a component and distant components (in the component tree)
