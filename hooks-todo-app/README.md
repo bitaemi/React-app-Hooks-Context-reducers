@@ -17,6 +17,7 @@
     - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
 - [React Hooks - are great!](#react-hooks---are-great)
 - [Context in React is about passing properties between a component and distant components (in the component tree)](#context-in-react-is-about-passing-properties-between-a-component-and-distant-components-in-the-component-tree)
+- [Transform the previous class based components into function=hooks based components - clean implementation](#transform-the-previous-class-based-components-into-functionhooks-based-components---clean-implementation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -229,3 +230,27 @@ export default class PageContent extends Component {
   // this takes the Navbar that was wrapped with the styles - this new version of the navbar si once again wrapped, this time with withLanguageContext
   // so, it returns a new version of the Navbar, now containing languageContext, as a prop
   ```
+
+# Transform the previous class based components into function=hooks based components - clean implementation
+
+```JavaScript
+import React, { createContext, useState } from "react";
+
+export const LanguageContext = createContext();
+
+// we DO NOT HAVE 'this' in a function based component
+// we pass props as argument
+// we use 'useState' to get the state
+export function LanguageProvider(props) {
+  const [language, setLanguage] = useState("spanish");
+  const changeLanguage = e => setLanguage(e.target.value);
+  return (
+    <LanguageContext.Provider value={{ language, changeLanguage }}>
+      {props.children}
+    </LanguageContext.Provider>
+  );
+}
+```
+
+Now there is no need to use that Higher Order Component, we do not need any more to add a second wrapper to the Navbar component, that became a hook based component.
+
