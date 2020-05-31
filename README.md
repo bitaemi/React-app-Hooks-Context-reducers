@@ -107,7 +107,7 @@ ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the f
 
 The mini-app with documented configuration:
 
-[./react-mini-app/README.md](./react-mini-app/README.md#full-configuration-tutorial-for--webpack)
+[Webpack config documentation](./react-mini-app/README.md#full-configuration-tutorial-for--webpack)
 
 ## React TODO app implemented with hooks
 

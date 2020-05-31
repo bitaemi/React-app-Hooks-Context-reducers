@@ -21,6 +21,8 @@
 - [State Management w/ useReducer and useContext](#state-management-w-usereducer-and-usecontext)
   - [Add in Todo Context](#add-in-todo-context)
   - [Consuming the Todo Context](#consuming-the-todo-context)
+- [Introduce a new pattern - instead of multiple methods write a single function - a reducer - fix reloading issue](#introduce-a-new-pattern---instead-of-multiple-methods-write-a-single-function---a-reducer---fix-reloading-issue)
+- [Memo - Higher Order Component built into React](#memo---higher-order-component-built-into-react)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -343,3 +345,96 @@ function TodoList() { // no need for params
 ```
 ... do the same for the other components ...
 
+# Introduce a new pattern - instead of multiple methods write a single function - a reducer - fix reloading issue
+
+For each piece of functionality, inside the useTodoState hook, we create a new method and also we have to use the TodosContext and get each this kind of function, in each file we whant to use it.
+A cleaner way is to write a single function, called a reducer. This fc. takes an input, and dependig on the action specified as an input, and it will return the appropriate state.
+
+Now there's a third one.
+
+And the way that a context works whenever its value changes it has one single value.
+
+Whenever something in that value changes it's going to pass down new data causing a re render in whatever
+
+components are consuming that context.
+
+So all of our components right now are consuming our TodosContext.
+
+The fact is that the context is changing and it's passing down new information to the components, even thought we're just not using
+
+the exact info that changed, if is part of the context and we're getting all the data because in the todos.contex.js, in the TodosCntext Provider we pass all the data:
+
+```JavaScript
+  <TodosContext.Provider value={{ todos, addTodo, removeTodo, toggleTodo, editTodo } }>
+      {/* the component TodosProvider will wrapp around to whatever the children are */}
+      {props.children}
+  </TodosContext.Provider>
+```        
+The undesired effect and deffect is that each time an element from todos changes, all the components that use the TodosContext are re-rendering (though they only get from the TodosContext, only the methods, wich do not change).
+=> we need to split up the context in 2 contexts: 
+ - store the methonds wich do not change in a separate context
+ - a context for the state that needs to trigger frequenly
+
+ ## useReducer - a built-in Hook - an alternative to useState
+
+ The useReducer accepts a reducer of (type, action) => newState, and returns the current state paired with a dispach method;
+
+ ```JavaScript 
+ const [state, diapatch] = useReducer(countReducer, {count: 10});
+ // useReducer makes a piece of state, that was set initialy to {count:10} and it returns that piece of state (state), so we have access to it, and also returns the dispatch,
+ // which is using the contReducer that, whenever we call dispatch, we pass it an action, while whatever is returned from countReducer at each dispatch, will update the state
+ ```
+
+The TodosProvider  becomes:
+
+```JavaScript
+export function TodosProvider(props) {
+    const [todos, dispatch] = useReducer(todoReducer, defaultTodos);
+    return (
+        <TodosContext.Provider value={{ todos, dispatch } }>
+            {/* the component TodosProvider will wrapp around to whatever the children are */}
+            {props.children}
+        </TodosContext.Provider>
+    )
+}
+```
+Next, update all components that use data from the TodosContext, eg: TodoForm:
+
+```JavaScript
+function TodoForm() {
+ // ...
+  const { dispatch } = useContext(TodosContext); // get the { dispatch}  from the TodosContext
+
+  return (
+    <Paper style={{ margin: "1rem 0", padding: "0 1rem" }}>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          dispatch({type: "ADD", task: value}) // we no longer have addTodo method, but the generic dispatch method
+          // ...
+```
+
+Fix the issue splitting into 2 contexts:
+
+```JavaScript
+export const TodosContext = createContext();
+export const DispatchContext = createContext();
+
+// we already have the useTodoState hook that gives us all the pieces we need
+// what is missing is a context that will call this hook and then use these pieces and store them as a value for that context
+export function TodosProvider(props) {
+    const [todos, dispatch] = useReducer(todoReducer, defaultTodos);
+    return (
+        // in the TodosContext we need to pass just one thing, not an object like before
+        <TodosContext.Provider value={todos}>
+            {/* pass  the actual value of dispatch - not a new object */}
+            <DispatchContext.Provider value={dispatch}>
+                {/* the component TodosProvider will wrapp around to whatever the children are */}
+                {/* props.children are wrapped in 2 compenents */}
+                {props.children}
+            </DispatchContext.Provider>
+        </TodosContext.Provider>
+    )
+}
+```
+#  Memo - Higher Order Component built into React
