@@ -7,7 +7,7 @@
 - [II) ECMAScript 6 Features](#ii-ecmascript-6-features)
 - [III) ECMAScript 7](#iii-ecmascript-7)
 - [IV) ECMAScript 8](#iv-ecmascript-8)
-- [React development](#react-development)
+- [Configure webpack -notes](#configure-webpack--notes)
 - [React TODO app implemented with hooks](#react-todo-app-implemented-with-hooks)
 - [Usefull development external references](#usefull-development-external-references)
 
@@ -103,9 +103,11 @@ ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the f
 ## IV) ECMAScript 8
 [./es8/README.md](./es8/README.md)
 
-## React development
+## Configure webpack -notes
 
-[./react-mini-app/README.md](./react-mini-app/README.md)
+The mini-app with documented configuration:
+
+[./react-mini-app/README.md](./react-mini-app/README.md#full-configuration-tutorial-for--webpack)
 
 ## React TODO app implemented with hooks
 

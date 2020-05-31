@@ -18,6 +18,9 @@
 - [React Hooks - are great!](#react-hooks---are-great)
 - [Context in React is about passing properties between a component and distant components (in the component tree)](#context-in-react-is-about-passing-properties-between-a-component-and-distant-components-in-the-component-tree)
 - [Transform the previous class based components into function=hooks based components - clean implementation](#transform-the-previous-class-based-components-into-functionhooks-based-components---clean-implementation)
+- [State Management w/ useReducer and useContext](#state-management-w-usereducer-and-usecontext)
+  - [Add in Todo Context](#add-in-todo-context)
+  - [Consuming the Todo Context](#consuming-the-todo-context)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -253,4 +256,90 @@ export function LanguageProvider(props) {
 ```
 
 Now there is no need to use that Higher Order Component, we do not need any more to add a second wrapper to the Navbar component, that became a hook based component.
+
+
+# State Management w/ useReducer and useContext
+
+## Add in Todo Context
+
+```JavaScript
+import React, {createContext} from "react";
+import useTodoState from "../hooks/useTodoState";
+
+const defaultTodos = [
+    {id: 1, task: "Make new notes for Security study", completed: false},
+    {id: 2, task: "Release lady bugs into garden", completed: true} 
+];
+
+//  create the context itself
+
+export const TodosContext = createContext();
+// we already have the useTodoState hook that gives us all the pieces we need
+// what is missing is a context that will call this hook and then use these pieces and store them as a value for that context
+console.log(TodosContext)
+export function TodosProvider(props) {
+    // const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(defaultTodos);
+    // because  we use all the pieces from the hook we can shorten out the object (to todosStuff) that we pass as value in the returned component 
+    const { todosStuff } = useTodoState(defaultTodos);
+
+    return (
+        <TodosContext.Provider value={{ todosStuff } }>
+            {/* the component TodosProvider will wrapp around to whatever the children are */}
+            {props.children}
+        </TodosContext.Provider>
+    )
+}
+```
+
+Now, in the TodoApp.js we are able to use the TotosProvider wrapper (our functional component):
+
+```JavaScript
+   <TodosProvider>
+      <TodoForm addTodo={addTodo} />
+      <TodoList
+        todos={todos}
+        removeTodo={removeTodo}
+        toggleTodo={toggleTodo}
+        editTodo={editTodo}
+      />
+      {/* <button onClick={()=>setMood("angry")}>Click to get angry</button> */}
+  </TodosProvider>
+```
+## Consuming the Todo Context
+
+We need to include useContext hook in all the components that need access to that context.
+
+```JavaScript
+function TodoForm() { // do pass anymore { addTodo} as parameter
+  const { addTodo } = useContext(TodosContext); // get the { addTodo}  from the TodosContext
+  // ..
+```
+
+The TodoList function becomes:
+
+```JavaScript
+function TodoList() { // no need for params
+  const { todos } = useContext(TodosContext); // we need only the todos list from the TodosContext
+  if (todos.length)
+    return (
+      <Paper>
+        <List>
+          {todos.map((todo, i) => (
+            // To add a key to a fragment, we have to use the long-hand version
+            // rather than <> </>, we have to use <React.Fragment>
+            <React.Fragment key={i}>
+              <Todo
+                {...todo}
+                key={todo.id} // we removed the addTodo, removeTodo, ... no need because we were just passing those down
+              />
+              {i < todos.length - 1 && <Divider />}
+            </React.Fragment>
+          ))}
+        </List>
+      </Paper>
+    );
+  return null;
+}
+```
+... do the same for the other components ...
 
