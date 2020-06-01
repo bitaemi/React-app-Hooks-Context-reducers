@@ -22,7 +22,8 @@
   - [Add in Todo Context](#add-in-todo-context)
   - [Consuming the Todo Context](#consuming-the-todo-context)
 - [Introduce a new pattern - instead of multiple methods write a single function - a reducer - fix reloading issue](#introduce-a-new-pattern---instead-of-multiple-methods-write-a-single-function---a-reducer---fix-reloading-issue)
-- [Memo - Higher Order Component built into React](#memo---higher-order-component-built-into-react)
+- [Memo - Higher Order Component built into React - To Speed Up the App](#memo---higher-order-component-built-into-react---to-speed-up-the-app)
+- [Use Custom Hook: Reducer + LocalStorage](#use-custom-hook-reducer--localstorage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -380,7 +381,7 @@ The undesired effect and deffect is that each time an element from todos changes
  The useReducer accepts a reducer of (type, action) => newState, and returns the current state paired with a dispach method;
 
  ```JavaScript 
- const [state, diapatch] = useReducer(countReducer, {count: 10});
+ const [state, dispatch] = useReducer(countReducer, {count: 10});
  // useReducer makes a piece of state, that was set initialy to {count:10} and it returns that piece of state (state), so we have access to it, and also returns the dispatch,
  // which is using the contReducer that, whenever we call dispatch, we pass it an action, while whatever is returned from countReducer at each dispatch, will update the state
  ```
@@ -437,4 +438,46 @@ export function TodosProvider(props) {
     )
 }
 ```
-#  Memo - Higher Order Component built into React
+#  Memo - Higher Order Component built into React - To Speed Up the App
+
+Because the todos is changing and we are mapping over todos, when a todo is changing, all todos components re-render = deffect;
+If we had a class based componend we would use PureComponent, instead of Component:
+
+```JavaScript
+class Todos extends PureComponent {
+
+}
+```
+With functional components we use React.memo component, that we wrapp around my entire functional component.
+
+In Todo.js:
+
+```JavaScript
+export default memo(Todo);
+```
+- with this, React is simply remembering the old component and if there is no change, it will just render the component from cache.
+# Use Custom Hook: Reducer + LocalStorage
+
+Instead of using useState in order to operate on LocalStorage, we are going to use useReducer
+
+```JavaScript
+// ...
+  const [state, dispatch] = useReducer(reducer, defaultVal, () => {
+    let value;
+    try {
+      value = JSON.parse(
+        window.localStorage.getItem(key) || String(defaultVal)
+      );
+    } catch (e) {
+      value = defaultVal;
+    }
+    return value;
+  });
+  useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(state));
+  }, [state]);
+
+  return [state, dispatch];
+}
+// ...
+```
