@@ -1,0 +1,19 @@
+{
+  "name": "next-js-demo-app",
+  "version": "1.0.0",
+  "description": "- enables page construction on Server side that has the benefits:\r   1) speed for those small, slow devices, or very bad internet connection -  page is not created client side, there are less requests to the server\r   2) for SEO resons - from server can be received a full HTML structure where BOTS cand search and find data",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^9.4.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}

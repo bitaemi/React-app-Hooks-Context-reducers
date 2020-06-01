@@ -2,16 +2,43 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+- [React Todo App implemented with HOOKS and CONTEXT](#react-todo-app-implemented-with-hooks-and-context)
+- [Next.js DEMO](#nextjs-demo)
 - [The Full JavaScript & ES6 Tutorial - (including ES7, ES8, understanding libraries & React mini app)](#the-full-javascript--es6-tutorial---including-es7-es8-understanding-libraries--react-mini-app)
 - [I) JavaScript the weird parts](#i-javascript-the-weird-parts)
 - [II) ECMAScript 6 Features](#ii-ecmascript-6-features)
 - [III) ECMAScript 7](#iii-ecmascript-7)
 - [IV) ECMAScript 8](#iv-ecmascript-8)
-- [Configure webpack -notes](#configure-webpack--notes)
-- [React TODO app implemented with hooks](#react-todo-app-implemented-with-hooks)
+- [Webpack Configuration - notes](#webpack-configuration---notes)
 - [Usefull development external references](#usefull-development-external-references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## React Todo App implemented with HOOKS and CONTEXT, REDUCERS
+
+Follow the link below to go to the React implementation that includes :
+ - TODO app implemented with HOOKS + CONTEXT
+ - responsive login app implemented using JSS with Material UI libraries + CONTEXT - from [Colt's repo](https://github.com/Colt/todos-context-usereducer)
+- [React Hooks - are great!](./hooks-todo-app/README.md#react-hooks---are-great)
+- [Context in React is about passing properties between a component and distant components (in the component tree)](./hooks-todo-app/README.md#context-in-react-is-about-passing-properties-between-a-component-and-distant-components-in-the-component-tree)
+- [Transform the previous class based components into function=hooks based components - clean implementation](./hooks-todo-app/README.md#transform-the-previous-class-based-components-into-functionhooks-based-components---clean-implementation)
+- [State Management w/ useReducer and useContext](./hooks-todo-app/README.md#state-management-w-usereducer-and-usecontext)
+  - [Add in Todo Context](./hooks-todo-app/README.md#add-in-todo-context)
+  - [Consuming the Todo Context](./hooks-todo-app/README.md#consuming-the-todo-context)
+- [Introduce a new pattern - instead of multiple methods write a single function - a reducer - fix reloading issue](./hooks-todo-app/README.md#introduce-a-new-pattern---instead-of-multiple-methods-write-a-single-function---a-reducer---fix-reloading-issue)
+- [Memo - Higher Order Component built into React - To Speed Up the App](./hooks-todo-app/README.md#memo---higher-order-component-built-into-react---to-speed-up-the-app)
+- [Use Custom Hook: Reducer + LocalStorage](./hooks-todo-app/README.md#use-custom-hook-reducer--localstorage)
+
+[./hooks-todo-app/README.md#react-hooks](./hooks-todo-app/README.md#react-hooks)
+
+## Next.js DEMO
+
+- [Next.js - a framework using React library](./next-js-demo-app/README.md#nextjs---a-framework-using-react-library)
+- [Init a Next.js app](./next-js-demo-app/README.md#init-a-nextjs-app)
+- [Next.js pages](./next-js-demo-app/README.md#nextjs-pages)
+- [Next's Link Component](./next-js-demo-app/README.md#nexts-link-component)
+- [Next  fetching and Server API](./next-js-demo-app/README.md#next--fetching-and-server-api)
+
 
 ## The Full JavaScript & ES6 Tutorial - (including ES7, ES8, understanding libraries & React mini app)
 ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the first update to the language since ES5 was standardized in 2009. 
@@ -103,19 +130,11 @@ ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the f
 ## IV) ECMAScript 8
 [./es8/README.md](./es8/README.md)
 
-## Configure webpack -notes
+## Webpack Configuration - notes
 
 The mini-app with documented configuration:
 
 [Webpack config documentation](./react-mini-app/README.md#full-configuration-tutorial-for--webpack)
-
-## React TODO app implemented with hooks
-
-Follow the link below to go to the React implementation that includes :
- - TODO app implemented with HOOKS + CONTEXT
- - responsive login app implemented using JSS with Material UI libraries + CONTEXT - from [Colt's repo](https://github.com/Colt/todos-context-usereducer)
-
-[./hooks-todo-app/README.md#react-hooks](./hooks-todo-app/README.md#react-hooks)
 
 ## Usefull development external references
 - [Write Html fast using CSS syntax and the emmet features available in VS Code](https://docs.emmet.io/cheat-sheet/)
