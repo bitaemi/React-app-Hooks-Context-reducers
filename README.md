@@ -2,7 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [React Todo App implemented with HOOKS and CONTEXT](#react-todo-app-implemented-with-hooks-and-context)
+- [React Todo App implemented with HOOKS and CONTEXT, REDUCERS](#react-todo-app-implemented-with-hooks-and-context-reducers)
 - [Next.js DEMO](#nextjs-demo)
 - [The Full JavaScript & ES6 Tutorial - (including ES7, ES8, understanding libraries & React mini app)](#the-full-javascript--es6-tutorial---including-es7-es8-understanding-libraries--react-mini-app)
 - [I) JavaScript the weird parts](#i-javascript-the-weird-parts)

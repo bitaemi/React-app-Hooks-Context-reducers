@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NavbarComp from "../components/navbar";
 const ContactPageNameByChoice = () => (
     <div>
         <Link href='/'>
