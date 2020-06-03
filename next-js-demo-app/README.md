@@ -118,7 +118,8 @@ Fetching data is not done in the constructor because the calls will be done twic
 
 ## Use getInitialProps to fetch data APIs
 
-Solution: use getInitialProps from next.js to fetch the data (first fetch server-side, but when navigating between pages, fetches will be on client-side)
+Solution: use getInitialProps from next.js to fetch the data (first fetch server-side, but when navigating between pages, fetches will be on client-side).
+getInitialProps receives a context object with the following properties: pathname, query, asPath, req, res, err
 
 ```JavaScript
 const NameByChoice = ({ posts }) => {
@@ -144,6 +145,117 @@ NameByChoice.getInitialProps = async () => {
 
 ## Query Strings in Next
 
-For custom routs we use query strings:
+For custom routes we use query strings:
 
-``<link href={`post?id=${post.id}`}>
+```JavaScript
+<Link href={`/post?id=${post.id}`}>
+  <a>{post.title}></a>
+</Link>
+```
+
+In this case we could use the query property from the context object of `getInitialProperties`, or better we use the `withRouter`, a higher order component from `next/router`;
+
+```JavaScript
+const Post = props => {
+    console.log(props);
+    return (
+        <h1 key={props.id}>
+            ({props.id})
+        </h1>
+    )};
+    
+export default withRouter(Post);
+```
+or use the `getInitialProperties`:
+
+```JavaScript
+Post.getInitialProps = async ({ query }) => {
+    console.log(query);
+    const response = await Axios.get(`http://jsonplaceholder.typicode.com/comments?postId=${query.id}`);
+    const { data } = response;
+    return { ...query, comments: data };
+};
+```
+
+# Custom Server Without Express
+
+Next.js already uses a server in order to handle routes paths according to files names from pages directory.
+
+We override the server configuration by adding a file in the main directory and change the configuration in package.json like this:
+
+```json
+ "scripts": {
+    "dev": "node basic-server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node basic-server.js"
+  }
+```
+And the server side has a CUSTOM SERVER SIDE ROUTE, like shown below:
+
+```JavaScript
+// server.js
+const { createServer } = require('http')
+const { parse } = require('url')
+const next = require('next')
+
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev })
+const handle = app.getRequestHandler()
+
+app.prepare().then(() => {
+  createServer((req, res) => {
+    // Be sure to pass `true` as the second argument to `url.parse`.
+    // This tells it to parse the query portion of the URL.
+    const parsedUrl = parse(req.url, true)
+    const { pathname, query } = parsedUrl
+
+    if (pathname === '/chicken') {
+        app.render(req, res, '/contact', query);
+    }
+        else {
+              handle(req, res, parsedUrl);
+    }
+  
+  }).listen(3000, (err) => {
+    if (err) throw err
+    console.log('> Ready on http://localhost:3000')
+  })
+})
+```
+This is a limited, simple version of custom routing - for complicated routes we need regex. Thus, is better to use Express server.
+
+# Match Routes Using Express
+
+All routes are handled by express, excepte custom route:
+
+```JavaScript
+    server.get("/p/:id", (req, res) => {
+        // app.render(req, res, "/post", {id: req.params.id, color: pink}); // this also works
+        app.render(req, res, "/post", {id: req.params}); // params contains the id which is used in the route structure, thus this will work
+    });
+```    
+
+```JavaScript
+// express-server.js
+const next = require('next');
+const express = require('express');
+
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev })
+const handle = app.getRequestHandler()
+
+app.prepare().then(() => {
+    const server = express();
+
+    server.get("/p/:id", (req, res) => {
+        app.render(req, res, "/post", {id: req.params.id, color: pink});
+    });
+    server.get("*", (req, res) => {
+        return handle(req, res);
+    });
+    server.listen(3000, (err) => {
+        if (err) { throw err; }
+        console.log('> Ready on http://localhost:3000')
+    })
+})
+```
