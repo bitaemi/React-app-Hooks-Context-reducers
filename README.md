@@ -134,7 +134,7 @@ ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the f
 
 The mini-app with documented configuration:
 
-[Webpack config documentation](./react-mini-app/README.md#full-configuration-tutorial-for--webpack)
+[Webpack config documentation](./webpack-configs-apps/README.md#full-configuration-tutorial-for--webpack)
 
 ## Usefull development external references
 - [Write Html fast using CSS syntax and the emmet features available in VS Code](https://docs.emmet.io/cheat-sheet/)

@@ -11,6 +11,8 @@
 - [Next  fetching and Server API](#next--fetching-and-server-api)
   - [Use getInitialProps to fetch data APIs](#use-getinitialprops-to-fetch-data-apis)
   - [Query Strings in Next](#query-strings-in-next)
+- [Custom Server Without Express](#custom-server-without-express)
+- [Match Routes Using Express](#match-routes-using-express)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
