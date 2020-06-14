@@ -11,6 +11,7 @@
 - [IV) ECMAScript 8](#iv-ecmascript-8)
 - [Webpack Configuration - notes](#webpack-configuration---notes)
 - [Usefull development external references](#usefull-development-external-references)
+- [JavaScript Advice](#javascript-advice)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -137,6 +138,7 @@ The mini-app with documented configuration:
 [Webpack config documentation](./webpack-configs-apps/README.md#full-configuration-tutorial-for--webpack)
 
 ## Usefull development external references
+
 - [Write Html fast using CSS syntax and the emmet features available in VS Code](https://docs.emmet.io/cheat-sheet/)
 
 - [Implementation of ES6 features in major JavaScript engines](http://kangax.github.io/es5-compat-table/es6/).
@@ -170,5 +172,9 @@ Use my gists:
 
 - [Set-up Webpack and Babel for your web-server](https://gist.github.com/bitaemi/d429293325696eb11aaba058fd094f67)
 
+## JavaScript Advice
 
+
+- [Lesson learned - life is far easier when you have clarity and structure in your life! Be organized!](./javascript-interviews/README.md#lesson-learned---life-is-far-easier-when-you-have-clarity-and-structure-in-your-life-be-organized)
+- [JavaScript Interview Questions](./javascript-interviews/README.md#javascript-interview-questions)
 
