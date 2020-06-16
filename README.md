@@ -2,24 +2,35 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [React Todo App implemented with HOOKS and CONTEXT, REDUCERS](#react-todo-app-implemented-with-hooks-and-context-reducers)
-- [Next.js DEMO](#nextjs-demo)
-- [The Full JavaScript & ES6 Tutorial - (including ES7, ES8, understanding libraries & React mini app)](#the-full-javascript--es6-tutorial---including-es7-es8-understanding-libraries--react-mini-app)
-- [I) JavaScript the weird parts](#i-javascript-the-weird-parts)
-- [II) ECMAScript 6 Features](#ii-ecmascript-6-features)
-- [III) ECMAScript 7](#iii-ecmascript-7)
-- [IV) ECMAScript 8](#iv-ecmascript-8)
+- [1. React development](#1-react-development)
+- [2. React Todo App implemented with HOOKS and CONTEXT, REDUCERS](#2-react-todo-app-implemented-with-hooks-and-context-reducers)
+- [3. Next.js DEMO](#3-nextjs-demo)
+- [0. The Full JavaScript & ES6 Tutorial - (including ES7, ES8, understanding libraries & React mini app)](#0-the-full-javascript--es6-tutorial---including-es7-es8-understanding-libraries--react-mini-app)
+  - [I) JavaScript the weird parts](#i-javascript-the-weird-parts)
+  - [II) ECMAScript 6 Features](#ii-ecmascript-6-features)
+  - [III) ECMAScript 7](#iii-ecmascript-7)
+  - [IV) ECMAScript 8](#iv-ecmascript-8)
 - [Webpack Configuration - notes](#webpack-configuration---notes)
-- [Usefull development external references](#usefull-development-external-references)
+  - [Usefull development external references](#usefull-development-external-references)
 - [JavaScript Advice](#javascript-advice)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## React Todo App implemented with HOOKS and CONTEXT, REDUCERS
+# 1. React development
+
+- [React app some basics](./hooks-todo-app/README.md#react-app-some-basics)
+  - [Usefull libraries:](./hooks-todo-app/README.md#usefull-libraries)
+  - [Props have children](./hooks-todo-app/README.md#props-have-children)
+  - [State vs props](./hooks-todo-app/README.md#state-vs-props)
+  - [Search field filter with functional component](./hooks-todo-app/README.md#search-field-filter-with-functional-component)
+  - [JSS withStyles:](./hooks-todo-app/README.md#jss-withstyles)
+  - [Store website in github for free - deploy](./hooks-todo-app/README.md#store-website-in-github-for-free---deploy)
+
+# 2. React Todo App implemented with HOOKS and CONTEXT, REDUCERS
 
 Follow the link below to go to the React implementation that includes :
- - TODO app implemented with HOOKS + CONTEXT
- - responsive login app implemented using JSS with Material UI libraries + CONTEXT - from [Colt's repo](https://github.com/Colt/todos-context-usereducer)
+- TODO app implemented with HOOKS + CONTEXT
+- responsive login app implemented using JSS with Material UI libraries + CONTEXT - from [Colt's repo](https://github.com/Colt/todos-context-usereducer)
 - [React Hooks - are great!](./hooks-todo-app/README.md#react-hooks---are-great)
 - [Context in React is about passing properties between a component and distant components (in the component tree)](./hooks-todo-app/README.md#context-in-react-is-about-passing-properties-between-a-component-and-distant-components-in-the-component-tree)
 - [Transform the previous class based components into function=hooks based components - clean implementation](./hooks-todo-app/README.md#transform-the-previous-class-based-components-into-functionhooks-based-components---clean-implementation)
@@ -32,7 +43,7 @@ Follow the link below to go to the React implementation that includes :
 
 [./hooks-todo-app/README.md#react-hooks](./hooks-todo-app/README.md#react-hooks)
 
-## Next.js DEMO
+# 3. Next.js DEMO
 
 - [Next.js - a framework using React library](./next-js-demo-app/README.md#nextjs---a-framework-using-react-library)
 - [Init a Next.js app](./next-js-demo-app/README.md#init-a-nextjs-app)
@@ -41,11 +52,12 @@ Follow the link below to go to the React implementation that includes :
 - [Next  fetching and Server API](./next-js-demo-app/README.md#next--fetching-and-server-api)
 
 
-## The Full JavaScript & ES6 Tutorial - (including ES7, ES8, understanding libraries & React mini app)
+# 0. The Full JavaScript & ES6 Tutorial - (including ES7, ES8, understanding libraries & React mini app)
 ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the first update to the language since ES5 was standardized in 2009. 
 
 ## [I) JavaScript the weird parts](./javascript-weird-parts/README.md)
-- [1. Intro](./javascript-weird-parts/README.md/#1-intro)
+- [0. Intro](./javascript-weird-parts/README.md#0-intro)
+- [1. The Console - how to use it - clear data](./javascript-weird-parts/README.md#1-the-console---how-to-use-it---clear-data)
 - [2. Syntax Parsers, Lexical Environments](./javascript-weird-parts/README.md#2-syntax-parsers-lexical-environments)
 - [3. Execution Context - Creation and Hoisting](./javascript-weird-parts/README.md#3-execution-context---creation-and-hoisting)
 - [4. The Global Environment and the Global Object](./javascript-weird-parts/README.md#4-the-global-environment-and-the-global-object)
@@ -131,7 +143,7 @@ ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the f
 ## IV) ECMAScript 8
 [./es8/README.md](./es8/README.md)
 
-## Webpack Configuration - notes
+# Webpack Configuration - notes
 
 The mini-app with documented configuration:
 
@@ -172,7 +184,7 @@ Use my gists:
 
 - [Set-up Webpack and Babel for your web-server](https://gist.github.com/bitaemi/d429293325696eb11aaba058fd094f67)
 
-## JavaScript Advice
+# JavaScript Advice
 
 
 - [Lesson learned - life is far easier when you have clarity and structure in your life! Be organized!](./javascript-interviews/README.md#lesson-learned---life-is-far-easier-when-you-have-clarity-and-structure-in-your-life-be-organized)

@@ -13,7 +13,7 @@ export default function App() {
                 <PageContent>
                     <Navbar />
                     <Form />
-                    <TodoApp />
+                    {/* <TodoApp /> */}
                 </PageContent>
             </LanguageProvider>
         </ThemeProvider>
