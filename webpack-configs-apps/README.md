@@ -64,7 +64,7 @@ cd in the new dir for your prj and init node package manager:
  - the entry - the src folder for compilation
  - the outup - the destination folder and js file
     
-    https://github.com/bitaemi/es6-in-depth-tutorial/blob/master/webpack.config.js
+    [https://github.com/bitaemi/React-app-Hooks-Context-reducers/blob/master/webpack-configs-apps/webpack-config-babel/webpack.config.js](https://github.com/bitaemi/React-app-Hooks-Context-reducers/blob/master/webpack-configs-apps/webpack-config-babel/webpack.config.js)
     
 ### 3a)run the start command 
  - this time will use your configuration parameters (you can delete now the dist folder because the  output  from config will be used from now on):

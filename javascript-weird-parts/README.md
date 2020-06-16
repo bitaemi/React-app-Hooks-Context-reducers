@@ -2,7 +2,8 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [1. Intro](#1-intro)
+- [0. Intro](#0-intro)
+- [1. The Console - how to use it - clear data](#1-the-console---how-to-use-it---clear-data)
 - [2. Syntax Parsers, Lexical Environments](#2-syntax-parsers-lexical-environments)
 - [3. Execution Context - Creation and Hoisting](#3-execution-context---creation-and-hoisting)
 - [4. The Global Environment and the Global Object](#4-the-global-environment-and-the-global-object)
@@ -61,9 +62,26 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-### 1. Intro
+### 0. Intro
 
 Simple NOTES (in my own words) or a Cheet Sheet to remind us about what we learned in [Javascript - Understanding the weird parts couse](https://www.udemy.com/understand-javascript/)
+
+### 1. The Console - how to use it - clear data
+
+If you run some code in console, the variables you create directly there will cluter the global object (browser Window) and will remain even after clearing up the console (running clear() or the clear button from inspect website browser's window).
+
+Thus:
+1) you eiter run your code wrapped in an  [Immediately invoked Functions Expressions (IIFEs) and Safe Code](#33-immediately-invoked-functions-expressions-iifes-and-safe-code):
+
+```JavaScript
+(function() {
+
+})();
+```
+
+2) OR, otherwise, run in your console:
+
+``window.location.reload();``, in order to clear all the values and allocation of memory
 
 ### 2. Syntax Parsers, Lexical Environments
 
@@ -912,6 +930,7 @@ JS is very liberal about whitespace;
 
 console.log(person);
 ```
+
 ### 33. Immediately invoked Functions Expressions (IIFEs) and Safe Code
 
 ```JavaScript
@@ -928,8 +947,8 @@ console.log(person);
     console.log(immediatlyInvokedFunction); //expected result, immediatlyInvokedFunction is the returned valued of a function call
     console.log(immediatlyInvokedFunction()); //logs string is not a function
 
-    3; //A VALID js EXPRESSION,not doing anything with it but NO ERROR!
-    //the following throws an error because is not an expression, is a statement:
+    3; // A VALID js EXPRESSION, not doing anything with it but NO ERROR!
+    // the following throws an error because is not an expression, is a statement:
     function(name) {
             return 'Hello ' + name;
     }
