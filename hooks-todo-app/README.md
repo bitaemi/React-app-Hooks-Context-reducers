@@ -15,6 +15,13 @@
     - [Advanced Configuration](#advanced-configuration)
     - [Deployment](#deployment)
     - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
+- [React app some basics](#react-app-some-basics)
+  - [Usefull libraries:](#usefull-libraries)
+  - [Props have children](#props-have-children)
+  - [State vs props](#state-vs-props)
+  - [Search field filter with functional component](#search-field-filter-with-functional-component)
+  - [JSS withStyles:](#jss-withstyles)
+  - [Store website in github for free - deploy](#store-website-in-github-for-free---deploy)
 - [React Hooks - are great!](#react-hooks---are-great)
 - [Context in React is about passing properties between a component and distant components (in the component tree)](#context-in-react-is-about-passing-properties-between-a-component-and-distant-components-in-the-component-tree)
 - [Transform the previous class based components into function=hooks based components - clean implementation](#transform-the-previous-class-based-components-into-functionhooks-based-components---clean-implementation)
@@ -108,18 +115,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
     justify-content: space-between;
 }
 ``` 
+# React app some basics
 
- NOTES:
-1) minimize state and use has() method of Set type state...has(lt) could be checked with state.includes(lt)
-2) parent component should be stateFULL, child components should be stateLESS, because each time the state changes, component reloads, all functions of that component are recreated
-
-![lucidChart](./lucidChart-diagram.JPG)
-
-* Use Google Fonts
-
+## Usefull libraries:
 
 ```bash
-# Usefull libraries:
 npm i --save reactstrap react react-dom
 npm i --save chroma-js
 npm i --save bootstrap jquery popper.js
@@ -132,6 +132,62 @@ npm i --save uuid # generate unique ids
 npm i axios # for ajax calls
 npm i --save react-router-dom # use it with <BrowserRouter> component and <Switch><Route path=''></Switch>
 ```
+## Props have children
+
+Each component has the `props` object. If there are any elements given in between the starting and closing tag of a component, the the `props.children` object contains those elements
+
+## State vs props
+
+The state is an object that we pass down ( in the components tree) to child components - child components recevive the state as `props`
+ NOTES:
+1) minimize state and use has() method of Set type state...has(lt) could be checked with state.includes(lt)
+2) parent component should be stateFULL, child components should be stateLESS, because each time the state changes, component reloads, all functions of that component are recreated
+3) we architect  the component tree so that we put the state of the apropriate level ( only if there are child components interested in that state we move the state up so that all components requiring the state have access to it)
+
+![lucidChart](./lucidChart-diagram.JPG)
+
+* Use Google Fonts ( [fonts.google.com](fonts.google.com))
+
+## Search field filter with functional component
+
+A simple component that just takes some props and returns some HTML;
+Use it if you think you do not need internal state, nor access life cicle methods because it is easier to test, smaller and easier to read.
+Beacause we put the search field functionality inside a dedicated component we can easily reuse the component.
+
+```JSX
+const searchBox = ({ placeholder, handleChange }) => (
+
+  <input type="search"
+   placeholder = { placeholder }
+   // use `onChange` syntetic event from JSX not `onchange` event from HTML
+   onChange = { handleChange } /> // we DO NOT call methods or functions on events - React will call the functions/methods when render() happens -  just specify wich function should be called when the event happens
+)
+// ..
+this.state = {
+  monsters: [],
+  searchField: ''
+}
+
+render() {
+  const { monsters, searchField } = state;
+  const filteredMonsters = monsters.filter(monster => monster.name.toLowercase().includes(searchField.toLowerCase()));
+  return (
+    <SearchBox 
+      placeholder = 'search monsters'
+      handleChange = { e =>
+          this.setState=({ searchField: e.target.value }), // setState is a async function and we give a second param a callback fc
+          () => {
+            // .. this callback function runs immediatly after the setState finishes
+          }
+     }/>
+    <RenderListComponent monstersProp={filteredMonster} />
+  )
+}
+```
+
+Thus, we have the state at some parent component level, where all the others component also have access to the state and we use the event handle system  of React - whenever a change happens, a handle event will update the state.
+
+##  JSS withStyles:
 
 ```JavaScript
 
@@ -154,6 +210,33 @@ const {classess} = this.props;
 <Link to="./" onClick="(e) => e.stopPropagation()" > // after click go to page and stop executing any other functionality for onClick
 ```
 
+## Store website in github for free - deploy
+
+```bash
+# connect the project to the repo :
+git remote add origin git@github.com:bitaemi/React-app-Hooks-Context-reducers.git # or use https instead of ssh
+# include the github-pages package:
+yarn add gh-pages
+```
+after this in package.json add:
+
+```JSON
+  "homepage": "https://bitaemi/github.io/React-app-Hooks-Context-reducers", //
+
+// in "scripts" add:
+// ..
+    "predeploy": "yarn build", // build before deploy
+    "deploy": "gh-pages -d build" // is going to serve that build to our github project
+```
+After that, run: 
+
+```bash
+yarn deploy # this will first predeploy and after that publish and create the gh-pages branch in your repo``
+git add . # add your files and commit those on github
+git commit -m "added github pages"
+git push origin master # you do not have gh-pages branch on your local reppo archive
+```
+Go in the github interface and in repo's Settings -> Check that Source for gh-pages points to gh-pages branch
 # React Hooks - are great!
 
 ```JavaScript
@@ -182,7 +265,7 @@ function SWMovies() {
       <h1>Pick A Movie</h1>
       <h4>{movie.title}</h4>
       <p>{movie.opening_crawl}</p>
-      <select value={number} onChange={e => setNumber(e.target.value)}>
+      <select value={ number } onChange={ e => setNumber(e.target.value) }>
         <option value='1'>1</option>
         <option value='2'>2</option>
         <option value='3'>3</option>

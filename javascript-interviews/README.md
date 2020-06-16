@@ -4,6 +4,9 @@
 
 - [Lesson learned - life is far easier when you have clarity and structure in your life! Be organized!](#lesson-learned---life-is-far-easier-when-you-have-clarity-and-structure-in-your-life-be-organized)
 - [JavaScript Interview Questions](#javascript-interview-questions)
+- [Coding - Algorithms problems](#coding---algorithms-problems)
+- [Design question](#design-question)
+- [JavaScript Theoretical Interview Questions](#javascript-theoretical-interview-questions)
   - [Naming conventions](#naming-conventions)
   - [JS code can be invoked in HTML in 3 ways](#js-code-can-be-invoked-in-html-in-3-ways)
   - [Javascript is loosly typed, dinamically typed](#javascript-is-loosly-typed-dinamically-typed)
@@ -11,30 +14,31 @@
   - [Hoisting](#hoisting)
   - [Context (`this` keyword)](#context-this-keyword)
   - [Scope](#scope)
+  - [Closure](#closure)
   - [Map & filter](#map--filter)
   - [Let & var](#let--var)
-  - [Closure](#closure)
   - [Promises](#promises)
   - [Difference between == & ===](#difference-between---)
   - [Data types in JS](#data-types-in-js)
-  - [call / bind / apply - set custom vals for `this`](#call--bind--apply---set-custom-vals-for-this)
+  - [call / bind / apply - set custom vals for `this` ( = alter the execution context)](#call--bind--apply---set-custom-vals-for-this---alter-the-execution-context)
   - [What represents the `arguments`  object](#what-represents-the-arguments--object)
   - [What is a callback](#what-is-a-callback)
   - [Built-in methods](#built-in-methods)
   - [Differences between your framework and others](#differences-between-your-framework-and-others)
-  - [What makes JavaScript special (different)](#what-makes-javascript-special-different)
+  - [What makes JavaScript special (different) compared with other programming languages?](#what-makes-javascript-special-different-compared-with-other-programming-languages)
   - [arrow functions](#arrow-functions)
   - [What is difference between pass by value and pass by reference?](#what-is-difference-between-pass-by-value-and-pass-by-reference)
-  - [What is different in JS (comparing with other programming languages)?](#what-is-different-in-js-comparing-with-other-programming-languages)
   - [Unit testing](#unit-testing)
   - [Testing: unit, acceptance, integration](#testing-unit-acceptance-integration)
-  - [position: static = default(z-index does not work with static); relative, absolute](#position-static--defaultz-index-does-not-work-with-static-relative-absolute)
-  - [Class vs ID (. For class, not unique  vs. ID ## unique in HTML page)](#class-vs-id--for-class-not-unique--vs-id--unique-in-html-page)
-  - [If there are two classes for the same element, with different properties, which one is applied  the one with higher specificity](#if-there-are-two-classes-for-the-same-element-with-different-properties-which-one-is-applied--the-one-with-higher-specificity)
-  - [CSS Specificity (for body specificity is 0,0,0,0)](#css-specificity-for-body-specificity-is-0000)
+  - [Position: static = default](#position-static--default)
+  - [Position relative vs absolute](#position-relative-vs-absolute)
+  - [Z-index](#z-index)
+  - [Class vs ID](#class-vs-id)
+  - [If there are two classes for the same element, with different properties, which one is applied?](#if-there-are-two-classes-for-the-same-element-with-different-properties-which-one-is-applied)
+  - [CSS Specificity](#css-specificity)
   - [Two way bindings vs one way](#two-way-bindings-vs-one-way)
-  - [have you used any code quality tools](#have-you-used-any-code-quality-tools)
-  - [anonymous functions -](#anonymous-functions--)
+  - [Have you used any code quality tools](#have-you-used-any-code-quality-tools)
+  - [Anonymous functions](#anonymous-functions)
   - [Why whould you use a framework for development](#why-whould-you-use-a-framework-for-development)
   - [Immutability  how to implement it in your code](#immutability--how-to-implement-it-in-your-code)
   - [Difference between forEach and map](#difference-between-foreach-and-map)
@@ -72,11 +76,151 @@ II) develop and verify (test) your products based on clear use cases:
 - nowdays coders are all around the word and compete with numerouse programmers working remotely
 - thus heigher salaries in SW dev will no longer be for ordinary programmers, but rather for those that have more managerial skills, people skill, broader perspective and great ideeas to develop upon
 
+III) Make yourself better at speaking about technical subjects by recording yourself speaking
+
+Video content ideeas:
+
+- Video 1: spend time in productive manneer: work on a blog, contribute wih usefull content on youtube, contribute on a open source project
+- Video 2: explain my Marble Testing - Unit Testing github repo or any other repo with the subject I need to deepen at that time beeing
+- Video 3: Security with Angular - securing Angular App - about the notes I took in my private repo
+- Video 4: career subject - video talk about my programming experience - projects I worked in, how the interviewing process goes
+
 # JavaScript Interview Questions
 
 - !During interview, please give detailed answer to the technical questions you are asked!
 - !Sell yourself well: tell about your current SW Engineer position, speak about the projects you worked in, about the role you had and the contribution in those projects you mentioned!
 - Present yourself confident, resourceful e.g.
+
+# Coding - Algorithms problems
+
+[http://www.crackingthecodinginterview.com/uploads/6/5/2/8/6528028/cracking_the_coding_skills_-_v6.pdf](http://www.crackingthecodinginterview.com/uploads/6/5/2/8/6528028/cracking_the_coding_skills_-_v6.pdf)
+
+Solving questions
+
+- analitical skills
+- problem solving
+- comunication skills
+- be eager to solve hard questions, push to hard problems
+- have clean code
+- have optimal solution ( O space & O time =  Big O)
+- make tradeoffs
+- strong foundation in CS (Data Structures, Algorithms, Concepts)
+
+Implement DS/Algs - practice on paper; mock interviews( glassdoor, careercup)
+
+Master Big O - How the runtime will scale with time
+
+```JavaScript
+//1. Has the complexity O(n) because runtime scales linearly:
+
+for (i=0; i<n; i++) {
+    console.log(i);
+}
+
+//2. Has the complexity O(n*n) because runtime scales linearly:
+
+for (i=0; i<n; i++) {
+    for (j=0; j<n; j++) {
+    console.log(i, ',',j);
+
+}
+
+//3. Has the complexity O(n) because in big O we are concerned if it scales linearly. We do not say O(2n) or O(half of n) but O(n). We DROP CONSTANTS.
+
+for (i=0; i<n; i++) {
+    if (i%2 == 0) {
+    console.log(i);
+
+}
+
+//4. Print evens and print odds - We have 2 loops. Each with complexity O(n) because in big O we are concerned if it scales linearly. O(n)+O(n) means a linear complexity: O(n).
+
+for (i=0; i<n; i++) {
+    if (i%2 == 0) {
+    console.log(i);
+
+}
+
+for (i=0; i<n; i++) {
+    if (i%2 != 0) {
+    console.log(i);
+
+}
+//5. Print ordered pairs - complexity O(n*m) because in big O we use the lenght of the array or the depth of the tree
+
+for (i=0; i<n; i++) {
+    for (j=0; j<m; j++) {
+    console.log(i, ',',j);
+
+}
+
+//5. Fibonacci part 1 - O(2^k) where the k is the depth of the tree
+
+const fibonacci = function fibo(n) {
+        
+        if (n === 0 || n===1) {
+          return 1;
+        } else {
+          return fib(n-1) + fib(n-2);
+        }
+      };
+
+    /* Runtime is:
+              fib(6)
+      fib(5)          fib(4)
+  fib(4) fib(3)   fib(3) fib(2)
+  .............................
+
+  => tree height of k; each level doubles the nodes => 2^k
+      
+  */
+//6. Fibonacci part 1 - O(k) where the k is the depth of the tree
+
+var fibonacci_series = function (n) {
+        
+        if (n === 1) {
+          return [0, 1];
+        }
+        else {
+          var s = fibonacci_series(n - 1); // function is put in call stack and the value of s will be [0, 1]
+          s.push(s[s.length - 1] + s[s.length - 2]); // is call from call stack
+
+ 
+
+          return s;
+        }
+      };
+    /* Runtime is:
+              fib(6)
+      fib(5)        x 
+  fib(4)     x
+  .............................
+      => O(k)
+
+      Thus, when you see slow recursive algorithms, think about MEMOIZATION =  look for those repetitive problems
+  */
+```
+
+For hard algoritms problems, the interviewer needs to see how you think;
+- keep tring
+- pay attention to the interviewer
+- write real code
+- declare your variables
+- talk out loud to show the interviewer your thought process
+# Design question
+
+1. How would you approach the creation of an app? Do not do the app without first asking some details
+2. Scope the problems (ask questions, make appropiate assumptions)
+3. Define KEY concepts( can be somewhat naive)
+4. Identify issues - botleneck trade-offs
+5. Repair and Redesign
+
+Example: Mention Layers: Front-end layer, Caching Layer, APIs Layer, Controller Layer, Data Layer
+ and after that, add details for each layer;
+
+ Drive discussion, but also be very sensitive about what the interviewer says. Read about desing of major companies - Just think about how they are done, do not memorize.
+
+# JavaScript Theoretical Interview Questions
 
 `I  have a rich Web Development experience. In the last 2 years I worked extesively with Front-end technologies`
 
@@ -118,20 +262,15 @@ The typeof(operand), applied to the operand variable, returns the thype of that 
 
 ## Context (`this` keyword)
  
- - Context refers to the object to which a function belongs; this object, basically, is the environment. Global environment = Global execution context.
+ -  CONTEXT refers to the object to which a function belongs; `this` object, basically, is the environment. Global environment = Global execution CONTEXT.
  - In global scope `this` represents the window object;
  - Inside an inner fc/context `this` is `the object on which the event that triggerd the function happened` = is bound to the event handler referencing the DOM elem: `` myLink -> $( myLink ).on( click , myFc)``; - vars declared without keyword are global - bad practice  do not clutter the global object.
 
 ## Scope
 - Is about the visibility of the variable
 - There are two scopes: local and global;
-
-##  Map & filter
-
-##  Let & var 
-- Let keyword declares a var available only for that fc/block of declaration, var declares for the entire function/file
-
 ##  Closure 
+
 The inner function can access the variables of the enclosing function due to closures in JavaScript. In other words, the inner function preserves the scope chain of the enclosing function at the time the enclosing function was executed, and thus can access the enclosing function's variables.  Normally, when a function finishes execution,  it's vars cease to exist, but not in this case (scope chain).
 
 ```JavaScript
@@ -148,9 +287,21 @@ var X = outer();
 console.dir(X);
 ```
 A closure gives us access to an outer function's scope from an inner function. 
+![context+scope](./context+scope.jpeg)
+
+##  Map & filter
+
+##  Let & var 
+- Let keyword declares a var available only for that fc/block of declaration, var declares for the entire function/file
 
 ##  Promises
 
+A promise is an object that may produce a single value some time in the future: either a resolved value, or a reason that it’s not resolved (e.g., a network error occurred). A promise may be in one of 3 possible states: 
+- Fulfilled: onFulfilled() will be called (e.g., resolve() was called)
+- Rejected: onRejected() will be called (e.g., reject() was called)
+- Pending: not yet fulfilled or rejected.
+
+Promise users can attach callbacks to handle the fulfilled value or the reason for rejection.
 Promises are an esier way then callbacks to solve asynchronos code execution. Instead of using callbacks functions we return a `new Promise(resolve, reject)` object.
 In order to use the promise we call the function and chain the then and catch methods. The then  is going to be our success callback and catch our fails callback.
 
@@ -170,7 +321,8 @@ In order to use the promise we call the function and chain the then and catch me
  myPromiseFc().then(msg => console.log(msg)).catch(err => console.log(err.message));
 ```
 Promises solve the callback hell problem (when we need multiple callbacks): insted of nesting a callback inside a callback inside a callback, just chain `.then()` methods one after the other.
-Promisses are eager. They return all the result at once ( compared to the Observable streams of data - wich are lazy).
+Promises are eager, meaning that a promise will start doing whatever task you give it as soon as the promise constructor is invoked.
+They return all the result at once ( compared to the Observable streams of data, or with tasks - which are lazy).
 
 We use `Promise.all([promise1, promise2, promise3]).then(messages){console.log(messages)}` method to get the responses after all promises passed as params are completed. The benefit is that all promisses start executing in the same time, and if one promisse is slow (e.g. gets some data from the server, the following promises do not wait for it to finish execution)
 If we run ``Promise.race([promise1, promise2, promise3]).then(message){console.log(message)}`` it will return a soon as the first promise is completed.
@@ -209,18 +361,29 @@ This callback function is provided as an argument to another function, in order 
 
 ## Differences between your framework and others 
 
-## What makes JavaScript special (different)
+Well, I could say that my favorite framework is Angular, because the most complex UIs I developed were in Angular.
+Unlike React or Vue, Angular comes with a complex CLI, has all the packages (including the router - out of the box), provides implementations for lazy loading pattern with RxJs and ngRx for REDUX pattern implementation. Also security plementation seems to me more rich in libraries for implementing protocols like OpenID Connect, Oauth, Auth 2.
+
+Compared to it, React doesn't provide files with clear implementation of the MVC pattern.
+
+## What makes JavaScript special (different) compared with other programming languages?
 - scope global vs local  scope chain
 - code is executed at runtime (thus is used on Client side - executed in browser)
+- execution stack and event queue
+- I would also mention the event loop. The way JS handles more than one tasks as a time. Thoungh JS is single-threaded, executes code synchronously, there is a way to handle async events with the help of the browser APIs. Js puts all the tasks to exe in the execution stack. When it has somethig to execute after a wile, a time interval, will notify a WebApi that sets a timer and takes care to push into the event queue the task, at the exact right time. After the exe stack is emptied, JS checks in the event que for tasks to executecute, and executes each tasks from event que, each time the stack is empty.
+- other languages (CSS, HTML, PUG, JADE, Java can be transpiled into JavaScript)
+
+![exe-stack](./exe-stack-event-que.jpg)
+
+- Js is compiled at runtime, runs mainly in browser but also on server,cross compilers convert different lang in Js and Java, 
+- native query capabilities are available only through libs like underscore.js
 
 ## arrow functions 
- - short notation for anonymous functions,  the `=>` means return). An arrow function expression is similar to what in other programming languages is known as lambda.
-
+ - short notation for anonymous functions,  the `=>` means return). An arrow function expression is similar to what in other programming languages is known as lambda functions
+ - a great aspect is that the arrow function alredy binds the `this` keyword from inside the function to the context object where the arrow function is placed; thus if function is declare inside a component, `this` will be the context of that component;
+ 
 ##  What is difference between pass by value and pass by reference? 
 Js always calls functions by directly  passing params values, not the address of variables. However, when the variable refers to an object which includes array, the value is the reference to the object  not basically the address of the object, but copy of the object.
-
-##  What is different in JS (comparing with other programming languages)?
-- Js is compiled at runtime, runs mainly in browser but also on server,cross compilers convert different lang in Js and Java,   native query capabilities are available only through libs like underscore.js, Js is often driven by events, we have an execution stack+ event que  after exe stack is emtyed events are processed)
 
 ## Unit testing 
 Frameworks: MockaJs, AVA, Jest, Jasmine, Karma, Cypress 

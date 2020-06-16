@@ -18,8 +18,16 @@
 ## React Todo App implemented with HOOKS and CONTEXT, REDUCERS
 
 Follow the link below to go to the React implementation that includes :
- - TODO app implemented with HOOKS + CONTEXT
- - responsive login app implemented using JSS with Material UI libraries + CONTEXT - from [Colt's repo](https://github.com/Colt/todos-context-usereducer)
+- TODO app implemented with HOOKS + CONTEXT
+- responsive login app implemented using JSS with Material UI libraries + CONTEXT - from [Colt's repo](https://github.com/Colt/todos-context-usereducer)
+
+- [React app some basics](#react-app-some-basics)
+  - [Usefull libraries:](#usefull-libraries)
+  - [Props have children](#props-have-children)
+  - [State vs props](#state-vs-props)
+  - [Search field filter with functional component](#search-field-filter-with-functional-component)
+  - [JSS withStyles:](#jss-withstyles)
+  - [Store website in github for free - deploy](#store-website-in-github-for-free---deploy)
 - [React Hooks - are great!](./hooks-todo-app/README.md#react-hooks---are-great)
 - [Context in React is about passing properties between a component and distant components (in the component tree)](./hooks-todo-app/README.md#context-in-react-is-about-passing-properties-between-a-component-and-distant-components-in-the-component-tree)
 - [Transform the previous class based components into function=hooks based components - clean implementation](./hooks-todo-app/README.md#transform-the-previous-class-based-components-into-functionhooks-based-components---clean-implementation)
@@ -45,7 +53,8 @@ Follow the link below to go to the React implementation that includes :
 ECMAScript 2015 -  ES6 is a significant update to JavaScript language, and the first update to the language since ES5 was standardized in 2009. 
 
 ## [I) JavaScript the weird parts](./javascript-weird-parts/README.md)
-- [1. Intro](./javascript-weird-parts/README.md/#1-intro)
+- [0. Intro](./javascript-weird-parts/README.md#0-intro)
+- [1. The Console - how to use it - clear data](./javascript-weird-parts/README.md#1-the-console---how-to-use-it---clear-data)
 - [2. Syntax Parsers, Lexical Environments](./javascript-weird-parts/README.md#2-syntax-parsers-lexical-environments)
 - [3. Execution Context - Creation and Hoisting](./javascript-weird-parts/README.md#3-execution-context---creation-and-hoisting)
 - [4. The Global Environment and the Global Object](./javascript-weird-parts/README.md#4-the-global-environment-and-the-global-object)
