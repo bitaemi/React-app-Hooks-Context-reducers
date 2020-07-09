@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/github.io/React-app-Hooks-Context-reducers/precache-manifest.7a29b0ca688887463f3be66b172a3bdc.js"
+  "/github.io/React-app-Hooks-Context-reducers/precache-manifest.6176064c77e45095250a75f18faed80c.js"
 );
 
 workbox.clientsClaim();
