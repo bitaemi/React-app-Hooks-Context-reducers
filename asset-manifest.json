@@ -1,13 +1,13 @@
 {
-  "main.css": "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/static/css/main.107b35c1.chunk.css",
-  "main.js": "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/static/js/main.44266f58.chunk.js",
-  "main.js.map": "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/static/js/main.44266f58.chunk.js.map",
-  "runtime~main.js": "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/static/js/runtime~main.a570752d.js",
-  "runtime~main.js.map": "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/static/js/runtime~main.a570752d.js.map",
-  "static/js/2.4212256f.chunk.js": "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/static/js/2.4212256f.chunk.js",
-  "static/js/2.4212256f.chunk.js.map": "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/static/js/2.4212256f.chunk.js.map",
-  "index.html": "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/index.html",
-  "precache-manifest.787fdf062d306034f5a2bf7342c6caf6.js": "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/precache-manifest.787fdf062d306034f5a2bf7342c6caf6.js",
-  "service-worker.js": "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/service-worker.js",
-  "static/css/main.107b35c1.chunk.css.map": "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/static/css/main.107b35c1.chunk.css.map"
+  "main.css": "/github.io/React-app-Hooks-Context-reducers/static/css/main.90031b04.chunk.css",
+  "main.js": "/github.io/React-app-Hooks-Context-reducers/static/js/main.aac2a6f9.chunk.js",
+  "main.js.map": "/github.io/React-app-Hooks-Context-reducers/static/js/main.aac2a6f9.chunk.js.map",
+  "runtime~main.js": "/github.io/React-app-Hooks-Context-reducers/static/js/runtime~main.eaee643c.js",
+  "runtime~main.js.map": "/github.io/React-app-Hooks-Context-reducers/static/js/runtime~main.eaee643c.js.map",
+  "static/js/2.82744add.chunk.js": "/github.io/React-app-Hooks-Context-reducers/static/js/2.82744add.chunk.js",
+  "static/js/2.82744add.chunk.js.map": "/github.io/React-app-Hooks-Context-reducers/static/js/2.82744add.chunk.js.map",
+  "index.html": "/github.io/React-app-Hooks-Context-reducers/index.html",
+  "precache-manifest.7a29b0ca688887463f3be66b172a3bdc.js": "/github.io/React-app-Hooks-Context-reducers/precache-manifest.7a29b0ca688887463f3be66b172a3bdc.js",
+  "service-worker.js": "/github.io/React-app-Hooks-Context-reducers/service-worker.js",
+  "static/css/main.90031b04.chunk.css.map": "/github.io/React-app-Hooks-Context-reducers/static/css/main.90031b04.chunk.css.map"
 }
