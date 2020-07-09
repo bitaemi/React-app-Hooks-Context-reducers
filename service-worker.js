@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/github.io/React-app-Hooks-Context-reducers/precache-manifest.074bd175f3ba4ea321efeca7f2daeb6d.js"
+  "/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/precache-manifest.787fdf062d306034f5a2bf7342c6caf6.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/github.io/React-app-Hooks-Context-reducers/index.html", {
+workbox.routing.registerNavigationRoute("/github.io/React-app-Hooks-Context-reducers/hooks-todo-app/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
