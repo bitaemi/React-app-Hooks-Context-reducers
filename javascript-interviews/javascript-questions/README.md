@@ -46,6 +46,7 @@
 - [What is the difference between undeclared and undefined](#what-is-the-difference-between-undeclared-and-undefined)
 - [What is the difference between null and undefined](#what-is-the-difference-between-null-and-undefined)
 - [What is the difference between LocalStorage and SessionStorage](#what-is-the-difference-between-localstorage-and-sessionstorage)
+- [Angular Interview Questions (outside this repo)](#angular-interview-questions-outside-this-repo)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -104,7 +105,7 @@ var X = outer();
 console.dir(X);
 ```
 A closure gives us access to an outer function's scope from an inner function. 
-![context+scope](./context+scope.jpeg)
+![context+scope](./../context+scope.jpeg)
 
 ##  Map & filter
 
@@ -118,13 +119,14 @@ A promise is an object that may produce a single value some time in the future: 
 - Rejected: onRejected() will be called (e.g., reject() was called)
 - Pending: not yet fulfilled or rejected.
 
-Promise users can attach callbacks to handle the fulfilled value or the reason for rejection.
+Promise users can attach callbacks(a Promise gets as params 2 functions) to handle the fulfilled value or the reason for rejection.
 Promises are an esier way then callbacks to solve asynchronos code execution. Instead of using callbacks functions we return a `new Promise(resolve, reject)` object.
 In order to use the promise we call the function and chain the then and catch methods. The then  is going to be our success callback and catch our fails callback.
 
 ```JavaScript
  function myPromiseFc() {
-   return new Promise(resolve, reject) {
+  //  the construtor of a promise receives as parameters two callback functions
+   return new Promise(resolve, reject) { 
      if (0 == 0) {
        resolve('resolved info')
      } else {
@@ -141,7 +143,7 @@ Promises solve the callback hell problem (when we need multiple callbacks): inst
 Promises are eager, meaning that a promise will start doing whatever task you give it as soon as the promise constructor is invoked.
 They return all the result at once ( compared to the Observable streams of data - nothing happens until a subscription has been made to that stream of data, or with tasks - which are lazy).
 
-We use `Promise.all([promise1, promise2, promise3]).then(messages){console.log(messages)}` method to get the responses after all promises passed as params are completed. The benefit is that all promisses start executing in the same time, and if one promisse is slow (e.g. gets some data from the server, the following promises do not wait for it to finish execution)
+We use `Promise.all([promise1, promise2, promise3]).then(messages){console.log(messages)}` method to get the responses after all promises passed as params are completed. The benefit is that all promisses start executing in the same time, and if one promise is slow (e.g. gets some data from the server, the following promises do not wait for it to finish execution)
 If we run ``Promise.race([promise1, promise2, promise3]).then(message){console.log(message)}`` it will return a soon as the first promise is completed.
 
 ##  Difference between == & === 
@@ -190,7 +192,7 @@ Compared to it, React doesn't provide files with clear implementation of the MVC
 - I would also mention the event loop. The way JS handles more than one tasks as a time. Thoungh JS is single-threaded, executes code synchronously, there is a way to handle async events with the help of the browser APIs. Js puts all the tasks to exe in the execution stack. When it has somethig to execute after a wile, a time interval, will notify a WebApi that sets a timer and takes care to push into the event queue the task, at the exact right time. After the exe stack is emptied, JS checks in the event que for tasks to executecute, and executes each tasks from event que, each time the stack is empty.
 - other languages (CSS, HTML, PUG, JADE, Java can be transpiled into JavaScript)
 
-![exe-stack](./exe-stack-event-que.jpg)
+![exe-stack](./../exe-stack-event-que.jpg)
 
 - Js is compiled at runtime, runs mainly in browser but also on server,cross compilers convert different lang in Js and Java, 
 - native query capabilities are available only through libs like underscore.js
@@ -275,10 +277,14 @@ $( #myElem ).on( click , functionToExe);
 
 ## What are different ways HTML elements can be accessed in JS code?
 
-document.getElementById('idvalue')
-document.getElementByClassName('className')
-document.getElementByTagName('p')
-document.querySelector('p.myParagraphName > div') <!-- gets as param a CSS style selector and returns the first occurence of the element that maches the query -->
+```JavaScript
+document.getElementById('idvalue');
+document.getElementsByClassName('className');
+document.getElementByTagName('p');
+document.querySelector('p.myParagraphName > div'); 
+// gets as param a CSS style selector and returns the first occurence of the element
+//  that maches the query
+```
 
 ## What is the difference between pseudo elements and pseudoclasses 
 Pseudo-classes = fake classes, have the benefit that they select regular elements but under certain conditions(not all the time), like when their position relative to siblings or when they are under a particular state, dynamic :link, :visited, :hover, :active,:focus, :first-child, :nth-child(n) , :nth-last-child(n), :nth-of-type(n),:nth-last-of-type(n), :last-child, :first-of-type, :last-of-type, :only-child, :only-of-type, :root, :empty
@@ -308,3 +314,7 @@ A variable has the value undefined if it was not initialized. A function has the
   Both LocalStorage and SessionStorage store data on client side;
   LocalStorage data stays until is manually cleared through settings or explicitlly  through program
   Session Storage gets cleared when you close the browser
+
+ ## Angular Interview Questions (outside this repo)
+
+ [https://github.com/bitaemi/Angular-ngRx-Jest-Marble/blob/angular-unit-tests-jest-marble/src/app/angular-readme/README.md#angular-interview-questions](https://github.com/bitaemi/Angular-ngRx-Jest-Marble/blob/angular-unit-tests-jest-marble/src/app/angular-readme/README.md#angular-interview-questions)

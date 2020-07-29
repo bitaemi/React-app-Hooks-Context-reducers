@@ -2,6 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+- [Advice for Software Developers](#advice-for-software-developers)
 - [Behavioral/Soft Skills Questions](#behavioralsoft-skills-questions)
   - [Tell us about yourself. Experience in domain](#tell-us-about-yourself-experience-in-domain)
   - [Why did you choose web development?](#why-did-you-choose-web-development)
@@ -17,13 +18,18 @@
     - [How do you keep up to date with technologies?](#how-do-you-keep-up-to-date-with-technologies)
   - [Do you consider you can bring benefits to the project?](#do-you-consider-you-can-bring-benefits-to-the-project)
   - [Do you have any questions for us?](#do-you-have-any-questions-for-us)
-- [Lesson learned - life is far easier when you have clarity and structure in your life! Be organized!](#lesson-learned---life-is-far-easier-when-you-have-clarity-and-structure-in-your-life-be-organized)
 - [JavaScript Interview Questions](#javascript-interview-questions)
 - [Coding - Algorithms problems](#coding---algorithms-problems)
 - [Design question](#design-question)
 - [JavaScript Theoretical Interview Questions](#javascript-theoretical-interview-questions)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Advice for Software Developers
+
+- [Lesson learned - life is far easier when you have clarity and structure in your life! Be organized!](./development-advice/README.md#lesson-learned---life-is-far-easier-when-you-have-clarity-and-structure-in-your-life-be-organized)
+- [How to provide tasks estimations](./development-advice/README.md#how-to-provide-tasks-estimations)
+- [How to increase your productivity](./development-advice/README.md#how-to-increase-your-productivity)
 
 # Behavioral/Soft Skills Questions 
 
@@ -102,37 +108,6 @@ I am always searching for optimizing systems I'm working on, I see when optimiza
 
 How many positions are opened for Angular dev and why you have these openings?
 I saw an article about your company laing of x people (x%) of its employees. What kind of positions were eliminated and based on what criteria?
-
-# Lesson learned - life is far easier when you have clarity and structure in your life! Be organized!
-
-What I've learned the hard way is the fact that when developing a software we must have clear structure. All rules of life apply in sw dev. Here the requirement of clarity translates as following:
-
-I) Understand terminology, language gives you power!
-
-Document yourself very well. Give time to study the language you what to use when you make an implementation.
-Each language, framework or library becomes very pleasant when you see it like a real life entity. When you find analogies between concepts from a language and real life, things stay in memory and the language makes more sense. The main reason we use programming is to make our life easier, by automatization of life work. The best part is that all processes around us, are great models to emulate. When it comes to coding, working mecanical is a very bad practice. To prevent this, we need to master some linguistic concepts.
- For me, learning JavaScript becomes much easier when I use terms certain terms that I'm very familiar with, in my day to day life. Language is power, even though we are referring just to coding skills.
- For example, when you hear ``context``, this  means environment:  the global execution context = global environment; 
- Another useful thing in JavaScript as to see everything as an ``object``. Actually, in JavaScript, arrays are objects, functions are objects. Basically, do consider everything as an object, excluding the data types of type primitives (number, string, Boolean, null, undefined). Thus, also the environment is an object => global context  = window object = `this`.
- The window object has all kind of properties (inner objects =  objects that are inside the global environment). Thing at the window opened in your browser - it has inside all kind of stuff. There are a series of layers in a window, holding lots of data, stuff in order to render the final data that the visitor of that page sees. Like a human being that has organs that have, at their turn, cells... like that is the environment JavaScript is providing to you :-).
-
-II) develop and verify (test) your products based on clear use cases:
-
-- start from the simplest scenario (equals variable initialization) and elaborate on it (add the algorithm)
-- if it's hard to get I a natural way this kind of good structure simple follow the model of TDD (test driven design) and Unit testing
-- develop a few features/products based on such clear structures and you will get clarity
-- basically what we do in programming is to use abstractions in order to solve complex problems of automatizing processes from real life
-- nowadays coders are all around the word and compete with numerous programmers working remotely
-- thus higher salaries in SW dev will no longer be for ordinary programmers, but rather for those that have more managerial skills, people skill, broader perspective and great ideas to develop upon
-
-III) Make yourself better at speaking about technical subjects by recording yourself speaking
-
-Video content ideas:
-
-- Video 1: spend time in productive manner: work on a blog, contribute with useful content on YouTube, contribute on a open source project
-- Video 2: explain my Marble Testing - Unit Testing GitHub repo or any other repo with the subject I need to deepen at that time being
-- Video 3: Security with Angular - securing Angular App - about the notes I took in my private repo
-- Video 4: career subject - video talk about my programming experience - projects I worked in, how the interviewing process goes
 
 # JavaScript Interview Questions
 
@@ -254,7 +229,6 @@ For hard algoritms problems, the interviewer needs to see how you think;
 - write real code
 - declare your variables
 - talk out loud to show the interviewer your thought process
-
 
 - In order to be prepared, practice with algorithms implementations:
 
