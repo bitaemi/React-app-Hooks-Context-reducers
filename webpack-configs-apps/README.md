@@ -17,7 +17,7 @@
     - [5a)for babel we add into the config file the rules for the module](#5afor-babel-we-add-into-the-config-file-the-rules-for-the-module)
     - [5b) Create the file .babelrc and add as prerequisite the "env" variable](#5b-create-the-file-babelrc-and-add-as-prerequisite-the-env-variable)
   - [Other notes:](#other-notes)
-- [Colt's webpack config](#colts-webpack-config)
+- [Full webpack config](#full-webpack-config)
   - [package.json includes](#packagejson-includes)
   - [Webpack.common.js is the following](#webpackcommonjs-is-the-following)
   - [webpack.dev.js:](#webpackdevjs)
@@ -117,10 +117,10 @@ These mini apps were made in scope of Webpack learning purpose.
 Just download this webpack-config-babel folder and run:
 ```npm install``` to get the node_modules forder with all the packages specified in package.json (and all dependencies)
 
-# Colt's webpack config 
+# Full webpack config 
 
-Another webpack config is here:
-[https://github.com/bitaemi/webpack-demo-app](https://github.com/bitaemi/webpack-demo-app) where:
+A full webpack config is here:
+[https://github.com/bitaemi/React-app-Hooks-Context-reducers/blob/master/webpack-configs-apps/webpack-config-babel](https://github.com/bitaemi/React-app-Hooks-Context-reducers/tree/master/webpack-configs-apps/webpack-config-babel) where:
 
 ## package.json includes
 

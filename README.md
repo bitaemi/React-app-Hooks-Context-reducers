@@ -12,7 +12,8 @@
   - [IV) ECMAScript 8](#iv-ecmascript-8)
 - [Webpack Configuration - notes](#webpack-configuration---notes)
   - [Usefull development external references](#usefull-development-external-references)
-- [JavaScript Advice](#javascript-advice)
+- [Advice for Software Developers](#advice-for-software-developers)
+- [Web Dev Interviews Advice](#web-dev-interviews-advice)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -184,9 +185,13 @@ Use my gists:
 
 - [Set-up Webpack and Babel for your web-server](https://gist.github.com/bitaemi/d429293325696eb11aaba058fd094f67)
 
-# JavaScript Advice
+# Advice for Software Developers
 
+- [Lesson learned - life is far easier when you have clarity and structure in your life! Be organized!](./development-advice/README.md#lesson-learned---life-is-far-easier-when-you-have-clarity-and-structure-in-your-life-be-organized)
+- [How to provide tasks estimations](./development-advice/README.md#how-to-provide-tasks-estimations)
+- [How to increase your productivity](./development-advice/README.md#how-to-increase-your-productivity)
 
-- [Lesson learned - life is far easier when you have clarity and structure in your life! Be organized!](./javascript-interviews/README.md#lesson-learned---life-is-far-easier-when-you-have-clarity-and-structure-in-your-life-be-organized)
+# Web Dev Interviews Advice
+
 - [JavaScript Interview Questions](./javascript-interviews/README.md#javascript-interview-questions)
 
